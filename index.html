@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कृष्ण ज्ञान — Bhagavad Gita</title>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+/* ===== THEME VARIABLES ===== */
+[data-theme="dark"] {
+  --bg1:#050D1A; --bg2:#0A1628; --bg3:#0D1F10;
+  --card-bg:rgba(10,22,40,0.8); --card-border:rgba(255,215,0,0.2);
+  --text:  #FFF8E7; --text2:rgba(255,248,231,0.6); --text3:rgba(255,248,231,0.35);
+  --input-bg:rgba(255,255,255,0.05); --modal-bg:linear-gradient(145deg,#0D1A35,#0A1628);
+  --msg-k:linear-gradient(135deg,rgba(106,47,160,.3),rgba(255,107,0,.15));
+  --msg-a:linear-gradient(135deg,rgba(26,107,138,.3),rgba(26,74,46,.2));
+  --quick-bg:rgba(255,215,0,0.06); --footer-bg:rgba(5,13,26,0.3);
+}
+[data-theme="light"] {
+  --bg1:#F5EDD6; --bg2:#EDE0C4; --bg3:#E8DDB8;
+  --card-bg:rgba(255,248,231,0.95); --card-border:rgba(180,120,0,0.3);
+  --text:#2C1810; --text2:rgba(44,24,16,0.65); --text3:rgba(44,24,16,0.4);
+  --input-bg:rgba(255,255,255,0.8); --modal-bg:linear-gradient(145deg,#FFF8E7,#F5EDD6);
+  --msg-k:linear-gradient(135deg,rgba(180,100,0,.1),rgba(255,107,0,.08));
+  --msg-a:linear-gradient(135deg,rgba(26,107,138,.12),rgba(26,74,46,.08));
+  --quick-bg:rgba(180,120,0,0.08); --footer-bg:rgba(240,220,180,0.5);
+}
+:root {
+  --saffron:#FF6B00; --gold:#FFD700; --gold-dark:#C9A600;
+  --divine-purple:#6B2FA0; --peacock-blue:#1A6B8A; --forest:#1A4A2E;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg1); min-height:100vh; font-family:'Noto Sans Devanagari',sans-serif; color:var(--text); overflow-x:hidden; transition:background .4s,color .4s; }
+
+/* BG */
+.cosmic-bg { position:fixed; inset:0; z-index:0; transition:opacity .4s;
+  background:radial-gradient(ellipse at 20% 20%,rgba(106,47,160,.25) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 80%,rgba(255,107,0,.15) 0%,transparent 50%),
+    linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%); }
+[data-theme="light"] .cosmic-bg { opacity:.4; }
+.stars { position:fixed; inset:0; z-index:0; overflow:hidden; }
+[data-theme="light"] .stars { opacity:.15; }
+.star { position:absolute; background:white; border-radius:50%; animation:twinkle var(--dur,3s) ease-in-out infinite; }
+@keyframes twinkle { 0%,100%{opacity:.2} 50%{opacity:1} }
+.particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
+[data-theme="light"] .particles { opacity:.3; }
+.particle { position:absolute; width:4px; height:4px; background:var(--gold); border-radius:50%; animation:float-up var(--dur,8s) ease-in-out infinite; opacity:0; }
+@keyframes float-up { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:.8} 90%{opacity:.3} 100%{transform:translateY(-10vh);opacity:0} }
+
+.app-container { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:0 16px 100px; }
+
+/* Header */
+.header { text-align:center; padding:32px 20px 20px; }
+.header-top { display:flex; justify-content:flex-end; gap:10px; margin-bottom:12px; }
+.icon-btn { background:var(--card-bg); border:1px solid var(--card-border); border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; transition:all .2s; color:var(--text); }
+.icon-btn:hover { border-color:var(--gold); transform:scale(1.1); }
+.om-symbol { font-size:46px; color:var(--gold); display:block; animation:glow-pulse 2s ease-in-out infinite; text-shadow:0 0 20px rgba(255,215,0,.8),0 0 40px rgba(255,215,0,.4); }
+@keyframes glow-pulse { 0%,100%{text-shadow:0 0 20px rgba(255,215,0,.8),0 0 40px rgba(255,215,0,.4)} 50%{text-shadow:0 0 30px rgba(255,215,0,1),0 0 60px rgba(255,107,0,.6)} }
+.title-main { font-family:'Yatra One',serif; font-size:clamp(26px,6vw,50px);
+  background:linear-gradient(135deg,var(--gold) 0%,var(--saffron) 50%,var(--gold) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:6px 0 4px; letter-spacing:2px; }
+.title-sub { font-size:clamp(10px,2vw,13px); color:var(--text2); letter-spacing:3px; text-transform:uppercase; }
+.divider { display:flex; align-items:center; gap:12px; justify-content:center; margin:12px 0; }
+.divider-line { height:1px; width:70px; background:linear-gradient(90deg,transparent,var(--gold-dark),transparent); }
+
+/* Daily Shloka */
+.daily-shloka { background:linear-gradient(135deg,rgba(106,47,160,.25),rgba(255,107,0,.08));
+  border:1px solid var(--card-border); border-radius:16px; padding:16px 20px; margin:0 0 20px; text-align:center; position:relative; }
+.daily-label { font-size:10px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
+.shloka-text { font-family:'Tiro Devanagari Sanskrit',serif; font-size:clamp(12px,2.2vw,15px); color:var(--gold); line-height:1.8; font-style:italic; }
+.shloka-meaning { font-size:12px; color:var(--text2); margin-top:6px; font-style:italic; }
+.shloka-nav { display:flex; justify-content:center; gap:10px; margin-top:10px; }
+.shloka-nav-btn { background:rgba(255,215,0,.1); border:1px solid rgba(255,215,0,.3); border-radius:20px; padding:4px 12px; font-size:11px; color:var(--gold); cursor:pointer; transition:all .2s; }
+.shloka-nav-btn:hover { background:rgba(255,215,0,.2); }
+
+/* Search Bar */
+.search-wrap { position:relative; margin-bottom:18px; }
+.search-input { width:100%; background:var(--input-bg); border:1px solid var(--card-border); border-radius:30px; padding:11px 44px 11px 18px; color:var(--text); font-family:'Noto Sans Devanagari',sans-serif; font-size:13px; outline:none; transition:border-color .3s; }
+.search-input:focus { border-color:var(--gold); }
+.search-input::placeholder { color:var(--text3); }
+.search-icon { position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:16px; cursor:pointer; }
+.search-results { background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; margin-top:8px; max-height:260px; overflow-y:auto; display:none; }
+.search-result-item { padding:12px 16px; border-bottom:1px solid rgba(255,215,0,.08); cursor:pointer; transition:background .2s; }
+.search-result-item:hover { background:rgba(255,215,0,.05); }
+.search-result-item:last-child { border-bottom:none; }
+.sri { font-family:'Tiro Devanagari Sanskrit',serif; font-size:12px; color:var(--gold); font-style:italic; }
+.sri-ref { font-size:11px; color:var(--text2); margin-top:3px; }
+.sri-meaning { font-size:12px; color:var(--text); margin-top:3px; }
+
+/* Teaching Cards */
+.teachings-title { font-family:'Yatra One',serif; font-size:17px; color:var(--gold); text-align:center; margin:18px 0 12px; }
+.teachings-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(125px,1fr)); gap:9px; margin-bottom:20px; }
+.teaching-card { background:linear-gradient(135deg,rgba(255,107,0,.08),rgba(26,107,138,.08));
+  border:1px solid var(--card-border); border-radius:14px; padding:12px 8px; text-align:center; cursor:pointer; transition:all .3s; }
+.teaching-card:hover,.teaching-card.active { border-color:var(--gold); transform:translateY(-3px); box-shadow:0 8px 25px rgba(255,215,0,.15); }
+.teaching-card .icon { font-size:24px; margin-bottom:5px; display:block; }
+.teaching-card .label { font-size:12px; color:var(--text); font-weight:600; line-height:1.3; }
+.teaching-card .hindi { font-size:10px; color:var(--gold); margin-top:2px; opacity:.8; }
+
+/* Favourites Section */
+.favs-section { margin-bottom:20px; display:none; }
+.favs-title { font-family:'Yatra One',serif; font-size:16px; color:var(--gold); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.favs-list { display:flex; flex-direction:column; gap:8px; max-height:200px; overflow-y:auto; }
+.fav-item { background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:10px 14px; font-size:12px; color:var(--text2); display:flex; justify-content:space-between; align-items:flex-start; gap:8px; cursor:pointer; }
+.fav-item:hover { border-color:var(--gold); }
+.fav-text { flex:1; line-height:1.5; }
+.fav-del { font-size:14px; cursor:pointer; flex-shrink:0; opacity:.5; }
+.fav-del:hover { opacity:1; }
+
+/* Plan Badge */
+.plan-badge { padding:4px 10px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:.5px; margin-left:auto; cursor:pointer; flex-shrink:0; }
+.plan-badge.free { background:rgba(255,255,255,.1); color:var(--text2); border:1px solid rgba(255,255,255,.2); }
+.plan-badge.paid1 { background:rgba(26,107,138,.3); color:#7EC8E3; border:1px solid rgba(26,107,138,.5); }
+.plan-badge.premium { background:linear-gradient(135deg,rgba(255,215,0,.3),rgba(255,107,0,.2)); color:var(--gold); border:1px solid rgba(255,215,0,.4); }
+
+/* Chat */
+.chat-wrapper { background:var(--card-bg); border:1px solid var(--card-border); border-radius:24px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.4); }
+.chat-header { background:linear-gradient(135deg,rgba(106,47,160,.4),rgba(255,107,0,.2)); padding:13px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--card-border); }
+.avatar-ring { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--saffron),var(--divine-purple)); padding:2px; animation:rotate-ring 8s linear infinite; flex-shrink:0; }
+@keyframes rotate-ring { from{filter:hue-rotate(0deg)} to{filter:hue-rotate(360deg)} }
+.avatar-inner { width:100%; height:100%; border-radius:50%; background:#0A1628; display:flex; align-items:center; justify-content:center; font-size:22px; }
+.chat-header-info h3 { font-family:'Yatra One',serif; font-size:16px; color:var(--gold); }
+.chat-header-info p { font-size:11px; color:var(--text2); }
+.status-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:#00FF88; margin-right:5px; box-shadow:0 0 6px #00FF88; animation:blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* Messages */
+.messages-container { height:380px; overflow-y:auto; padding:16px; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:rgba(255,215,0,.3) transparent; }
+.messages-container::-webkit-scrollbar { width:3px; }
+.messages-container::-webkit-scrollbar-thumb { background:rgba(255,215,0,.3); border-radius:2px; }
+.message { margin-bottom:14px; animation:msg-appear .4s ease-out; }
+@keyframes msg-appear { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.message.krishna { display:flex; gap:9px; align-items:flex-start; }
+.message.arjuna { display:flex; gap:9px; align-items:flex-start; flex-direction:row-reverse; }
+.msg-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.message.krishna .msg-avatar { background:linear-gradient(135deg,var(--gold),var(--saffron)); }
+.message.arjuna .msg-avatar { background:linear-gradient(135deg,var(--peacock-blue),var(--forest)); }
+.msg-bubble { max-width:75%; padding:10px 14px; border-radius:18px; line-height:1.7; font-size:13px; position:relative; }
+.message.krishna .msg-bubble { background:var(--msg-k); border:1px solid rgba(255,215,0,.2); border-radius:4px 18px 18px 18px; }
+.message.arjuna .msg-bubble { background:var(--msg-a); border:1px solid rgba(26,107,138,.4); border-radius:18px 4px 18px 18px; }
+.msg-name { font-size:10px; font-weight:600; margin-bottom:4px; opacity:.7; }
+.message.krishna .msg-name { color:var(--gold); }
+.message.arjuna .msg-name { color:#7EC8E3; text-align:right; }
+.shloka-quote { font-family:'Tiro Devanagari Sanskrit',serif; font-size:12px; color:var(--gold); font-style:italic; border-left:2px solid var(--gold); padding-left:9px; margin:6px 0 4px; }
+
+/* Message Actions */
+.msg-actions { display:flex; gap:6px; margin-top:7px; flex-wrap:wrap; }
+.msg-action-btn { background:rgba(255,215,0,.08); border:1px solid rgba(255,215,0,.2); border-radius:14px; padding:3px 9px; font-size:10px; color:var(--gold); cursor:pointer; transition:all .2s; }
+.msg-action-btn:hover { background:rgba(255,215,0,.18); }
+
+/* Typing */
+.typing-indicator { display:flex; gap:5px; align-items:center; padding:5px 0; }
+.typing-dot { width:7px; height:7px; background:var(--gold); border-radius:50%; animation:typing-bounce 1.4s ease-in-out infinite; }
+.typing-dot:nth-child(2){animation-delay:.2s} .typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typing-bounce { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-6px);opacity:1} }
+
+/* Input */
+.input-area { padding:12px 16px; border-top:1px solid var(--card-border); background:rgba(5,13,26,.4); display:flex; gap:8px; align-items:flex-end; }
+.input-box { flex:1; background:var(--input-bg); border:1px solid var(--card-border); border-radius:20px; padding:10px 16px; color:var(--text); font-family:'Noto Sans Devanagari',sans-serif; font-size:13px; resize:none; min-height:42px; max-height:110px; outline:none; transition:border-color .3s; }
+.input-box:focus { border-color:var(--gold); }
+.input-box::placeholder { color:var(--text3); }
+.voice-btn { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--peacock-blue),var(--divine-purple)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:18px; transition:all .3s; flex-shrink:0; }
+.voice-btn:hover { transform:scale(1.1); }
+.voice-btn.listening { background:linear-gradient(135deg,#ff4444,#cc0000); animation:pulse-red 1s ease-in-out infinite; }
+@keyframes pulse-red { 0%,100%{box-shadow:0 0 0 0 rgba(255,68,68,.4)} 50%{box-shadow:0 0 0 8px rgba(255,68,68,0)} }
+.send-btn { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--saffron),var(--divine-purple)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:19px; transition:all .3s; flex-shrink:0; box-shadow:0 4px 15px rgba(255,107,0,.3); }
+.send-btn:hover { transform:scale(1.1); } .send-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+/* Quick Qs */
+.quick-qs { padding:9px 16px 3px; border-top:1px solid rgba(255,215,0,.08); background:var(--footer-bg); }
+.quick-qs-label { font-size:10px; color:var(--gold); opacity:.6; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+.quick-btns { display:flex; flex-wrap:wrap; gap:5px; padding-bottom:9px; }
+.quick-btn { background:var(--quick-bg); border:1px solid var(--card-border); border-radius:20px; padding:5px 11px; color:var(--text2); font-size:11px; cursor:pointer; transition:all .2s; font-family:'Noto Sans Devanagari',sans-serif; }
+.quick-btn:hover { border-color:var(--gold); color:var(--gold); }
+
+/* Affiliate */
+.affiliate-section { margin:20px 0; }
+.affiliate-title { font-family:'Yatra One',serif; font-size:16px; color:var(--gold); margin-bottom:10px; text-align:center; }
+.affiliate-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; }
+.affiliate-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:14px 12px; text-align:center; cursor:pointer; transition:all .3s; text-decoration:none; display:block; }
+.affiliate-card:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,215,0,.1); }
+.affiliate-card .aff-icon { font-size:28px; display:block; margin-bottom:6px; }
+.affiliate-card .aff-name { font-size:12px; color:var(--text); font-weight:600; }
+.affiliate-card .aff-desc { font-size:10px; color:var(--text2); margin-top:2px; }
+.affiliate-card .aff-tag { display:inline-block; background:rgba(255,107,0,.2); color:var(--saffron); font-size:9px; padding:2px 7px; border-radius:10px; margin-top:5px; font-weight:600; }
+
+/* AdSense placeholder */
+.ad-banner { background:linear-gradient(135deg,rgba(255,215,0,.04),rgba(255,107,0,.03)); border:1px dashed rgba(255,215,0,.2); border-radius:12px; padding:14px; text-align:center; margin:16px 0; }
+.ad-label { font-size:10px; color:var(--text3); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+.ad-content { font-size:12px; color:var(--text2); }
+
+/* Footer nav */
+.footer-nav { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; padding:18px 16px 6px; }
+.footer-link { font-size:12px; color:var(--gold); cursor:pointer; text-decoration:none; opacity:.6; transition:opacity .2s; }
+.footer-link:hover { opacity:1; }
+.footer-copy { text-align:center; padding:6px 20px 22px; color:var(--text3); font-size:11px; }
+
+/* ===== MODALS ===== */
+.modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(5,13,26,.94); backdrop-filter:blur(10px); align-items:flex-start; justify-content:center; padding:16px; overflow-y:auto; }
+.modal-box { background:var(--modal-bg); border:1px solid var(--card-border); border-radius:24px; padding:26px 20px; max-width:440px; width:100%; box-shadow:0 30px 80px rgba(0,0,0,.7); animation:modal-in .3s ease-out; margin:auto; }
+@keyframes modal-in { from{opacity:0;transform:scale(.9) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.modal-om { font-size:32px; text-align:center; margin-bottom:5px; }
+.modal-title { font-family:'Yatra One',serif; font-size:20px; color:var(--gold); text-align:center; margin-bottom:5px; }
+.modal-subtitle { font-size:12px; color:var(--text2); text-align:center; margin-bottom:18px; line-height:1.6; }
+
+/* Pricing */
+.plan-cards { display:flex; flex-direction:column; gap:9px; margin-bottom:16px; }
+.plan-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,215,0,.15); border-radius:16px; padding:12px 15px; cursor:pointer; transition:all .25s; display:flex; align-items:center; gap:11px; }
+.plan-card:hover { border-color:var(--gold); background:rgba(255,215,0,.07); transform:translateX(4px); }
+.plan-card.featured { border-color:var(--saffron); background:linear-gradient(135deg,rgba(255,107,0,.1),rgba(106,47,160,.1)); }
+.plan-tag { background:var(--saffron); color:white; font-size:9px; padding:2px 6px; border-radius:10px; font-weight:700; display:inline-block; margin-left:5px; }
+.plan-icon { font-size:22px; flex-shrink:0; }
+.plan-info { flex:1; }
+.plan-name { font-size:13px; font-weight:600; color:var(--text); }
+.plan-desc { font-size:11px; color:var(--text2); margin-top:1px; }
+.plan-price { font-size:18px; font-weight:700; color:var(--gold); white-space:nowrap; }
+.plan-price span { font-size:10px; color:rgba(255,215,0,.6); font-weight:400; }
+.rzp-note { background:rgba(255,215,0,.06); border:1px solid rgba(255,215,0,.2); border-radius:10px; padding:10px 12px; margin-bottom:12px; font-size:11px; color:var(--text2); text-align:center; }
+.rzp-note strong { color:var(--gold); }
+.modal-close-btn { width:100%; background:transparent; border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:9px; color:var(--text2); font-size:12px; cursor:pointer; transition:all .2s; font-family:'Noto Sans Devanagari',sans-serif; margin-top:4px; }
+.modal-close-btn:hover { color:var(--text); border-color:rgba(255,255,255,.25); }
+
+/* Policy */
+.policy-body { max-height:55vh; overflow-y:auto; font-size:13px; line-height:1.8; margin-bottom:14px; scrollbar-width:thin; }
+.policy-section { margin-bottom:16px; }
+.policy-section h4 { color:var(--gold); font-family:'Yatra One',serif; font-size:14px; margin-bottom:5px; }
+.policy-section p,.policy-section li { color:var(--text2); margin-bottom:5px; }
+.policy-section ul { padding-left:16px; }
+.policy-divider { height:1px; background:rgba(255,215,0,.12); margin:12px 0; }
+
+/* Settings */
+.settings-row { display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid rgba(255,215,0,.08); }
+.settings-label { font-size:13px; color:var(--text); }
+.settings-desc { font-size:10px; color:var(--text2); margin-top:1px; }
+.toggle { position:relative; width:42px; height:22px; }
+.toggle input { opacity:0; width:0; height:0; }
+.toggle-slider { position:absolute; inset:0; background:rgba(255,255,255,.15); border-radius:22px; cursor:pointer; transition:.3s; }
+.toggle-slider:before { content:''; position:absolute; width:16px; height:16px; left:3px; bottom:3px; background:white; border-radius:50%; transition:.3s; }
+.toggle input:checked + .toggle-slider { background:linear-gradient(135deg,var(--saffron),var(--divine-purple)); }
+.toggle input:checked + .toggle-slider:before { transform:translateX(20px); }
+.danger-btn { width:100%; background:rgba(255,50,50,.1); border:1px solid rgba(255,50,50,.3); border-radius:12px; padding:9px; color:rgba(255,120,120,.8); font-size:12px; cursor:pointer; font-family:inherit; margin-top:10px; }
+.info-btn { width:100%; background:var(--quick-bg); border:1px solid var(--card-border); border-radius:12px; padding:9px; color:var(--gold); font-size:12px; cursor:pointer; font-family:inherit; margin-top:8px; opacity:.8; }
+
+/* Favourites modal */
+.fav-modal-item { background:rgba(255,255,255,.03); border:1px solid rgba(255,215,0,.12); border-radius:12px; padding:12px 14px; margin-bottom:8px; }
+.fav-modal-text { font-size:12px; color:var(--text2); line-height:1.6; margin-bottom:6px; }
+.fav-modal-actions { display:flex; gap:6px; }
+.fav-modal-btn { background:var(--quick-bg); border:1px solid rgba(255,215,0,.2); border-radius:10px; padding:3px 10px; font-size:11px; color:var(--gold); cursor:pointer; }
+
+@media(max-width:600px) { .teachings-grid{grid-template-columns:repeat(3,1fr)} .messages-container{height:300px} .msg-bubble{max-width:85%;font-size:12px} .affiliate-grid{grid-template-columns:repeat(2,1fr)} }
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; z-index:150; background:rgba(5,13,26,.97); border-top:1px solid rgba(255,215,0,.2); display:flex; justify-content:space-around; align-items:center; padding:8px 0 16px; backdrop-filter:blur(20px); }
+.nav-item { display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; padding:4px 16px; border-radius:14px; transition:all .2s; flex:1; }
+.nav-item.active .nav-icon { background:linear-gradient(135deg,var(--saffron),var(--divine-purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.nav-item.active .nav-label { color:var(--gold); font-weight:700; }
+.nav-icon { font-size:24px; transition:transform .2s; }
+.nav-item:hover .nav-icon { transform:scale(1.2); }
+.nav-label { font-size:10px; color:var(--text2); letter-spacing:.5px; }
+.nav-item.active .nav-dot { width:4px; height:4px; background:var(--gold); border-radius:50%; margin-top:2px; }
+
+/* Page sections */
+.page-section { display:none; }
+.page-section.active { display:block; }
+.app-container { padding-bottom:130px; }
+
+/* Explore page */
+.explore-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:20px; }
+.explore-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:20px; padding:20px 16px; text-align:center; cursor:pointer; transition:all .3s; }
+.explore-card:hover { border-color:var(--gold); transform:translateY(-4px); box-shadow:0 10px 30px rgba(255,215,0,.12); }
+.explore-card .exp-icon { font-size:40px; display:block; margin-bottom:10px; }
+.explore-card .exp-name { font-family:'Yatra One',serif; font-size:16px; color:var(--gold); margin-bottom:4px; }
+.explore-card .exp-desc { font-size:11px; color:var(--text2); line-height:1.5; }
+.library-overlay { display:none; position:fixed; inset:0; z-index:300; background:var(--bg1); overflow-y:auto; }
+.library-header { background:linear-gradient(135deg,rgba(106,47,160,.5),rgba(255,107,0,.3)); padding:20px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--card-border); position:sticky; top:0; z-index:10; }
+.library-back { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; flex-shrink:0; }
+.library-title { font-family:'Yatra One',serif; font-size:20px; color:var(--gold); }
+.library-subtitle { font-size:11px; color:var(--text2); }
+.library-body { padding:20px 16px; max-width:900px; margin:0 auto; }
+
+/* Book Grid */
+.book-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:24px; }
+.book-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:18px; padding:16px 12px; text-align:center; cursor:pointer; transition:all .3s; }
+.book-card:hover { border-color:var(--gold); transform:translateY(-4px); box-shadow:0 10px 30px rgba(255,215,0,.12); }
+.book-cover { font-size:52px; display:block; margin-bottom:8px; }
+.book-name { font-family:'Yatra One',serif; font-size:15px; color:var(--gold); margin-bottom:4px; }
+.book-desc { font-size:11px; color:var(--text2); line-height:1.5; }
+.book-chapters { display:inline-block; background:rgba(255,215,0,.1); border:1px solid rgba(255,215,0,.2); border-radius:10px; padding:2px 8px; font-size:10px; color:var(--gold); margin-top:6px; }
+
+/* Reader View */
+.reader-view { display:none; }
+.reader-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.reader-back { background:rgba(255,215,0,.1); border:1px solid rgba(255,215,0,.2); border-radius:20px; padding:6px 14px; font-size:12px; color:var(--gold); cursor:pointer; }
+.reader-title { font-family:'Yatra One',serif; font-size:18px; color:var(--gold); }
+.chapter-list { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+.chapter-item { background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:13px 16px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:12px; }
+.chapter-item:hover { border-color:var(--gold); background:rgba(255,215,0,.05); }
+.chapter-num { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--saffron),var(--divine-purple)); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:white; flex-shrink:0; }
+.chapter-name { font-size:13px; color:var(--text); font-weight:600; }
+.chapter-desc { font-size:11px; color:var(--text2); margin-top:2px; }
+
+/* Content Reader */
+.content-reader { display:none; }
+.content-reader-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+.content-body { background:var(--card-bg); border:1px solid var(--card-border); border-radius:18px; padding:20px; line-height:2; font-size:14px; color:var(--text); }
+.content-body p { margin-bottom:14px; }
+.content-body .verse { font-family:'Tiro Devanagari Sanskrit',serif; color:var(--gold); font-style:italic; font-size:13px; border-left:3px solid var(--gold); padding-left:12px; margin:12px 0; }
+.content-body h3 { font-family:'Yatra One',serif; font-size:17px; color:var(--gold); margin:16px 0 8px; }
+.content-body .highlight { background:rgba(255,215,0,.08); border-radius:8px; padding:10px 14px; margin:10px 0; font-size:13px; }
+.font-controls { display:flex; gap:8px; align-items:center; margin-bottom:12px; }
+.font-btn { background:var(--quick-bg); border:1px solid var(--card-border); border-radius:10px; padding:5px 12px; font-size:13px; color:var(--text); cursor:pointer; }
+.progress-bar { background:rgba(255,215,0,.1); border-radius:10px; height:4px; margin-bottom:16px; }
+.progress-fill { background:linear-gradient(90deg,var(--saffron),var(--gold)); height:100%; border-radius:10px; transition:width .3s; }
+</style>
+</head>
+<body>
+<div class="cosmic-bg"></div>
+<div class="stars" id="stars"></div>
+<div class="particles" id="particles"></div>
+
+<div class="app-container">
+
+  <!-- ===== HOME PAGE ===== -->
+  <div class="page-section active" id="page-home">
+    <div class="header">
+      <div class="header-top">
+        <button class="icon-btn" onclick="toggleTheme()" id="theme-btn">🌙</button>
+        <button class="icon-btn" onclick="openModal('favs')">🔖</button>
+        <button class="icon-btn" onclick="openModal('search')">🔍</button>
+      </div>
+      <span class="om-symbol">ॐ</span>
+      <h1 class="title-main">कृष्ण ज्ञान</h1>
+      <p class="title-sub">Bhagavad Gita · 700 Shlokas · Eternal Wisdom</p>
+      <div class="divider"><div class="divider-line"></div><span style="color:var(--gold)">🪷</span><div class="divider-line"></div></div>
+    </div>
+    <div class="daily-shloka">
+      <div class="daily-label">📅 Aaj Ka Shloka — Daily Wisdom</div>
+      <div class="shloka-text" id="daily-shloka-text">लोड हो रहा है...</div>
+      <div class="shloka-meaning" id="daily-shloka-meaning"></div>
+      <div class="shloka-nav">
+        <button class="shloka-nav-btn" onclick="prevShloka()">← Pichla</button>
+        <button class="shloka-nav-btn" onclick="shareDaily()">📤 Share</button>
+        <button class="shloka-nav-btn" onclick="nextShloka()">Agla →</button>
+      </div>
+    </div>
+    <div class="ad-banner"><div class="ad-label">Sponsored</div><div class="ad-content">🕉️ Apni Spiritual Journey Shuru Karein</div></div>
+    <h2 class="teachings-title">✨ कृष्ण की शिक्षाएं</h2>
+    <div class="teachings-grid">
+      <div class="teaching-card" onclick="selectTeaching(this,'karma yoga ke baare mein batao')"><span class="icon">⚡</span><div class="label">Karma Yoga</div><div class="hindi">कर्म योग</div></div>
+      <div class="teaching-card" onclick="selectTeaching(this,'atma aur sharir ke baare mein kya kaha')"><span class="icon">🔮</span><div class="label">Atma</div><div class="hindi">आत्मा का ज्ञान</div></div>
+      <div class="teaching-card" onclick="selectTeaching(this,'dharma ke baare mein batao')"><span class="icon">⚖️</span><div class="label">Dharma</div><div class="hindi">धर्म का मार्ग</div></div>
+      <div class="teaching-card" onclick="selectTeaching(this,'bhakti yoga ke baare mein batao')"><span class="icon">🙏</span><div class="label">Bhakti</div><div class="hindi">भक्ति योग</div></div>
+      <div class="teaching-card" onclick="selectTeaching(this,'mind control aur meditation ke baare mein')"><span class="icon">🧘</span><div class="label">Dhyana</div><div class="hindi">ध्यान योग</div></div>
+      <div class="teaching-card" onclick="selectTeaching(this,'fear aur courage ke baare mein batao')"><span class="icon">🦁</span><div class="label">Veerata</div><div class="hindi">साहस</div></div>
+    </div>
+    <div class="chat-wrapper">
+      <div class="chat-header">
+        <div class="avatar-ring"><div class="avatar-inner">🦚</div></div>
+        <div class="chat-header-info"><h3>श्री कृष्ण</h3><p><span class="status-dot"></span>Kurukshetra में आपके सारथी · श्रीमद्भगवद्गीता</p></div>
+        <div id="plan-badge" class="plan-badge free" onclick="openModal('pricing')">🆓 1 Free</div>
+      </div>
+      <div class="messages-container" id="messages">
+        <div class="message krishna">
+          <div class="msg-avatar">🦚</div>
+          <div><div class="msg-name">श्री कृष्ण · Bhagavad Gita</div>
+          <div class="msg-bubble"><div class="shloka-quote">ॐ नमो भगवते वासुदेवाय</div>🙏 <strong>नमस्ते, हे अर्जुन!</strong><br><br>मैं श्री कृष्ण हूं — तुम्हारा सारथी, मित्र, और परमात्मा। पूछो — जो भी मन में हो। <em>मैं सुन रहा हूं।</em></div></div>
+        </div>
+      </div>
+      <div class="quick-qs">
+        <div class="quick-qs-label">⚡ जल्दी पूछें</div>
+        <div class="quick-btns">
+          <button class="quick-btn" onclick="sendQuick('Jeevan ka purpose kya hai?')">जीवन का उद्देश्य?</button>
+          <button class="quick-btn" onclick="sendQuick('Fear se kaise ladein?')">डर से कैसे लड़ें?</button>
+          <button class="quick-btn" onclick="sendQuick('Gita ka sabse bada sandesh kya hai?')">गीता का सन्देश?</button>
+          <button class="quick-btn" onclick="sendQuick('Ishwar ko kaise prapt karein?')">ईश्वर को कैसे पाएं?</button>
+        </div>
+      </div>
+      <div class="input-area">
+        <textarea class="input-box" id="userInput" placeholder="अर्जुन की तरह अपना प्रश्न पूछें... (Hindi या English में)" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">🎤</button>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">🪷</button>
+      </div>
+    </div>
+    <div class="affiliate-section">
+      <div class="affiliate-title">🛍️ Spiritual Store</div>
+      <div class="affiliate-grid">
+        <a class="affiliate-card" href="https://amzn.to/bhagavad-gita" target="_blank" rel="noopener"><span class="aff-icon">📖</span><div class="aff-name">Bhagavad Gita</div><div class="aff-desc">Sanskrit + Hindi</div><span class="aff-tag">Amazon</span></a>
+        <a class="affiliate-card" href="https://amzn.to/rudraksha" target="_blank" rel="noopener"><span class="aff-icon">📿</span><div class="aff-name">Rudraksha Mala</div><div class="aff-desc">5 Mukhi Original</div><span class="aff-tag">Amazon</span></a>
+        <a class="affiliate-card" href="https://amzn.to/krishna-idol" target="_blank" rel="noopener"><span class="aff-icon">🪔</span><div class="aff-name">Krishna Murti</div><div class="aff-desc">Brass Pooja</div><span class="aff-tag">Amazon</span></a>
+        <a class="affiliate-card" href="https://amzn.to/pooja-thali" target="_blank" rel="noopener"><span class="aff-icon">🌸</span><div class="aff-name">Pooja Samagri</div><div class="aff-desc">Complete Kit</div><span class="aff-tag">Amazon</span></a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <span class="footer-link" onclick="openModal('about')">🕉️ About</span>
+      <span class="footer-link" onclick="openModal('privacy')">🔒 Privacy</span>
+      <span class="footer-link" onclick="openModal('terms')">📜 Terms</span>
+      <span class="footer-link" onclick="openModal('pricing')">💎 Pricing</span>
+      <span class="footer-link" onclick="openModal('playstore')">📱 App</span>
+    </div>
+    <div class="footer-copy">🕉️ © 2025 कृष्ण ज्ञान · krishnagiyan.in</div>
+  </div>
+
+  <!-- ===== EXPLORE PAGE ===== -->
+  <div class="page-section" id="page-explore">
+    <div class="header">
+      <span class="om-symbol" style="font-size:36px;">✨</span>
+      <h1 class="title-main" style="font-size:clamp(22px,5vw,38px);">Explore</h1>
+      <p class="title-sub">Divine Knowledge — Ek Jagah Par</p>
+      <div class="divider"><div class="divider-line"></div><span style="color:var(--gold)">🪷</span><div class="divider-line"></div></div>
+    </div>
+    <div class="explore-grid">
+      <div class="explore-card" onclick="goToLibrary('gita')"><span class="exp-icon">🦚</span><div class="exp-name">भगवद्गीता</div><div class="exp-desc">18 Adhyay · Krishna ka divya updesh</div></div>
+      <div class="explore-card" onclick="goToLibrary('mahabharat')"><span class="exp-icon">⚔️</span><div class="exp-name">महाभारत</div><div class="exp-desc">18 Parva · Dharma ka mahayudh</div></div>
+      <div class="explore-card" onclick="goToLibrary('ramayan')"><span class="exp-icon">🏹</span><div class="exp-name">रामायण</div><div class="exp-desc">7 Kand · Shri Ram ki katha</div></div>
+      <div class="explore-card" onclick="goToLibrary('garuda')"><span class="exp-icon">🦅</span><div class="exp-name">गरुड़ पुराण</div><div class="exp-desc">Mrityu aur Moksha ka rahasya</div></div>
+      <div class="explore-card" onclick="goToLibrary('vishnu')"><span class="exp-icon">🔱</span><div class="exp-name">विष्णु पुराण</div><div class="exp-desc">Dashavatar · Vishnu ki leela</div></div>
+      <div class="explore-card" onclick="goToLibrary('shiv')"><span class="exp-icon">🌙</span><div class="exp-name">शिव पुराण</div><div class="exp-desc">Mahadev ki agam katha</div></div>
+      <div class="explore-card" onclick="goToLibrary('hanuman')"><span class="exp-icon">🐒</span><div class="exp-name">हनुमान चालीसा</div><div class="exp-desc">40 Chaupai with Arth</div></div>
+      <div class="explore-card" onclick="goToLibrary('upanishad')"><span class="exp-icon">📿</span><div class="exp-name">उपनिषद</div><div class="exp-desc">Atma aur Brahma ka gyan</div></div>
+    </div>
+    <div class="ad-banner"><div class="ad-label">Advertisement</div><div class="ad-content">🕉️ Google AdSense — krishnagiyan.in</div></div>
+  </div>
+
+  <!-- ===== LIBRARY PAGE ===== -->
+  <div class="page-section" id="page-library">
+    <div id="lib-books-page">
+      <div class="header">
+        <span class="om-symbol" style="font-size:36px;">📚</span>
+        <h1 class="title-main" style="font-size:clamp(22px,5vw,38px);">Divine Library</h1>
+        <p class="title-sub">Pavitra Granth — Padhein Aur Gyaan Lein</p>
+        <div class="divider"><div class="divider-line"></div><span style="color:var(--gold)">🪷</span><div class="divider-line"></div></div>
+      </div>
+      <div class="book-grid">
+        <div class="book-card" onclick="openBook('gita')"><span class="book-cover">🦚</span><div class="book-name">भगवद्गीता</div><div class="book-desc">Krishna ka Arjuna ko divya updesh</div><span class="book-chapters">18 Adhyay</span></div>
+        <div class="book-card" onclick="openBook('mahabharat')"><span class="book-cover">⚔️</span><div class="book-name">महाभारत</div><div class="book-desc">Kurukshetra ka mahayudh</div><span class="book-chapters">18 Parva</span></div>
+        <div class="book-card" onclick="openBook('ramayan')"><span class="book-cover">🏹</span><div class="book-name">रामायण</div><div class="book-desc">Maryada Purushottam Ram</div><span class="book-chapters">7 Kand</span></div>
+        <div class="book-card" onclick="openBook('garuda')"><span class="book-cover">🦅</span><div class="book-name">गरुड़ पुराण</div><div class="book-desc">Mrityu aur Moksha</div><span class="book-chapters">2 Khand</span></div>
+        <div class="book-card" onclick="openBook('vishnu')"><span class="book-cover">🔱</span><div class="book-name">विष्णु पुराण</div><div class="book-desc">Vishnu ki mahima</div><span class="book-chapters">6 Ansh</span></div>
+        <div class="book-card" onclick="openBook('shiv')"><span class="book-cover">🌙</span><div class="book-name">शिव पुराण</div><div class="book-desc">Mahadev ki agam katha</div><span class="book-chapters">7 Samhita</span></div>
+        <div class="book-card" onclick="openBook('hanuman')"><span class="book-cover">🐒</span><div class="book-name">हनुमान चालीसा</div><div class="book-desc">40 Chaupai with meaning</div><span class="book-chapters">40 Chaupai</span></div>
+        <div class="book-card" onclick="openBook('upanishad')"><span class="book-cover">📿</span><div class="book-name">उपनिषद</div><div class="book-desc">Vedanta ka gyan</div><span class="book-chapters">108 Upanishad</span></div>
+      </div>
+    </div>
+    <div class="reader-view" id="lib-chapters-page">
+      <div style="padding:16px 0;">
+        <div class="reader-header"><button class="reader-back" onclick="backToBooksPage()">← Wapas</button><div class="reader-title" id="chapter-list-title-page"></div></div>
+        <div class="chapter-list" id="chapter-list-body-page"></div>
+      </div>
+    </div>
+    <div class="content-reader" id="lib-reader-page">
+      <div style="padding:16px 0;">
+        <div class="content-reader-header">
+          <button class="reader-back" onclick="backToChaptersPage()">← Wapas</button>
+          <div><div class="reader-title" id="reader-title-page"></div><div style="font-size:11px;color:var(--text2)" id="reader-subtitle-page"></div></div>
+        </div>
+        <div class="font-controls">
+          <span style="font-size:11px;color:var(--text2);">Font:</span>
+          <button class="font-btn" onclick="changeFontSizePage(-1)">A−</button>
+          <button class="font-btn" onclick="changeFontSizePage(1)">A+</button>
+          <button class="font-btn" onclick="shareChapterPage()">📤 Share</button>
+          <button class="font-btn" onclick="askKrishnaAboutPage()">🦚 Krishna se poochho</button>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="reader-progress-page" style="width:0%"></div></div>
+        <div class="content-body" id="reader-content-page"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS PAGE ===== -->
+  <div class="page-section" id="page-settings">
+    <div class="header">
+      <span class="om-symbol" style="font-size:36px;">⚙️</span>
+      <h1 class="title-main" style="font-size:clamp(22px,5vw,38px);">Settings</h1>
+      <p class="title-sub">Apni Pasand Se Customize Karein</p>
+      <div class="divider"><div class="divider-line"></div><span style="color:var(--gold)">🪷</span><div class="divider-line"></div></div>
+    </div>
+    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:16px 20px;margin-bottom:16px;">
+      <div class="settings-row"><div><div class="settings-label">🌙 Dark Mode</div><div class="settings-desc">Dark ya Light theme</div></div><label class="toggle"><input type="checkbox" id="tog-dark2" onchange="toggleThemeFromSettings(this.checked)" checked><span class="toggle-slider"></span></label></div>
+      <div class="settings-row"><div><div class="settings-label">🔊 Sound Effects</div><div class="settings-desc">Message sound</div></div><label class="toggle"><input type="checkbox" id="tog-sound2" onchange="saveSetting('sound',this.checked)" checked><span class="toggle-slider"></span></label></div>
+      <div class="settings-row"><div><div class="settings-label">✨ Animations</div><div class="settings-desc">Stars aur particles</div></div><label class="toggle"><input type="checkbox" id="tog-anim2" onchange="toggleAnimations(this.checked)" checked><span class="toggle-slider"></span></label></div>
+      <div class="settings-row"><div><div class="settings-label">🛍️ Affiliate Store</div><div class="settings-desc">Spiritual products</div></div><label class="toggle"><input type="checkbox" id="tog-affiliate2" onchange="toggleAffiliate(this.checked)" checked><span class="toggle-slider"></span></label></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+      <button onclick="openModal('pricing')" style="background:linear-gradient(135deg,rgba(255,107,0,.2),rgba(107,47,160,.2));border:1px solid rgba(255,215,0,.3);border-radius:14px;padding:14px;color:var(--gold);font-size:14px;cursor:pointer;font-family:inherit;">💎 Plan Upgrade — ₹49/month</button>
+      <button onclick="openModal('about')" style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:12px;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;">🕉️ About Krishna Giyan</button>
+      <button onclick="openModal('privacy')" style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:12px;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;">🔒 Privacy Policy</button>
+      <button onclick="openModal('terms')" style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:12px;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;">📜 Terms of Use</button>
+      <button onclick="openModal('playstore')" style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:12px;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;">📱 App Download</button>
+      <button onclick="clearAllData()" style="background:rgba(255,50,50,.1);border:1px solid rgba(255,50,50,.3);border-radius:14px;padding:12px;color:rgba(255,120,120,.8);font-size:13px;cursor:pointer;font-family:inherit;">🗑️ Saara Data Delete</button>
+    </div>
+    <div class="footer-copy">🕉️ © 2025 कृष्ण ज्ञान · krishnagiyan.in</div>
+  </div>
+
+</div><!-- end app-container -->
+
+<!-- Bottom Navigation Bar -->
+<div class="bottom-nav">
+  <div class="nav-item active" id="nav-home" onclick="switchPage('home')">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Home</span>
+  </div>
+  <div class="nav-item" id="nav-explore" onclick="switchPage('explore')">
+    <span class="nav-icon">✨</span>
+    <span class="nav-label">Explore</span>
+  </div>
+  <div class="nav-item" id="nav-library" onclick="switchPage('library')">
+    <span class="nav-icon">📚</span>
+    <span class="nav-label">Library</span>
+  </div>
+  <div class="nav-item" id="nav-settings" onclick="switchPage('settings')">
+    <span class="nav-icon">⚙️</span>
+    <span class="nav-label">Settings</span>
+  </div>
+</div>
+
+
+<!-- PRICING MODAL -->
+<div class="modal-overlay" id="modal-pricing">
+  <div class="modal-box">
+    <div class="modal-om">🦚</div>
+    <div class="modal-title">कृष्ण ज्ञान — Plans</div>
+    <div class="modal-subtitle" id="pricing-reason">Apna plan choose karein</div>
+    <div class="rzp-note">💳 <strong>Razorpay</strong> — UPI · Card · Net Banking · Wallet</div>
+    <div class="plan-cards">
+      <div class="plan-card" onclick="initRazorpay('paid1',100,'Quick Access ₹1')">
+        <div class="plan-icon">⚡</div>
+        <div class="plan-info"><div class="plan-name">Quick Access</div><div class="plan-desc">10 questions · Aaj ke liye</div></div>
+        <div class="plan-price">₹1 <span>/ session</span></div>
+      </div>
+      <div class="plan-card featured" onclick="initRazorpay('monthly',4900,'Monthly Premium ₹49')">
+        <div class="plan-icon">✨</div>
+        <div class="plan-info"><div class="plan-name">Monthly <span class="plan-tag">POPULAR</span></div><div class="plan-desc">Unlimited · Ad-free · Daily Shloka</div></div>
+        <div class="plan-price">₹49 <span>/ month</span></div>
+      </div>
+      <div class="plan-card" onclick="initRazorpay('yearly',14900,'Yearly Premium ₹149')">
+        <div class="plan-icon">👑</div>
+        <div class="plan-info"><div class="plan-name">Yearly — Best Value</div><div class="plan-desc">Unlimited · Save ₹439/year</div></div>
+        <div class="plan-price">₹149 <span>/ year</span></div>
+      </div>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('pricing')">Abhi nahi</button>
+  </div>
+</div>
+
+<!-- SEARCH MODAL -->
+<div class="modal-overlay" id="modal-search">
+  <div class="modal-box">
+    <div class="modal-om">🔍</div>
+    <div class="modal-title">Shloka Search</div>
+    <div class="modal-subtitle">Koi bhi shloka dhundho — topic ya adhyaya se</div>
+    <div class="search-wrap" style="margin-bottom:12px;">
+      <input class="search-input" id="shloka-search-input" placeholder="jaise: karma, dhyan, atma, adhyaya 2..." oninput="searchShlokas(this.value)">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="search-results" id="shloka-search-results" style="display:block;max-height:320px;"></div>
+    <button class="modal-close-btn" style="margin-top:12px;" onclick="closeModal('search')">Close</button>
+  </div>
+</div>
+
+<!-- FAVOURITES MODAL -->
+<div class="modal-overlay" id="modal-favs">
+  <div class="modal-box">
+    <div class="modal-om">🔖</div>
+    <div class="modal-title">Saved Favourites</div>
+    <div class="modal-subtitle">Tumhare bookmark kiye hue jawab</div>
+    <div class="policy-body" id="favs-modal-list">
+      <div style="text-align:center;color:var(--text2);padding:20px;">Koi favourite nahi save hua abhi.<br>Krishna ke jawab mein ❤️ dabao!</div>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('favs')">Close</button>
+  </div>
+</div>
+
+<!-- PLAYSTORE MODAL -->
+<div class="modal-overlay" id="modal-playstore">
+  <div class="modal-box">
+    <div class="modal-om">📱</div>
+    <div class="modal-title">App Download</div>
+    <div class="modal-subtitle">Krishna Giyan app abhi Play Store aur App Store par aa rahi hai!</div>
+    <div style="text-align:center;padding:20px 0;">
+      <div style="font-size:48px;margin-bottom:16px;">🚀</div>
+      <div style="background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);border-radius:14px;padding:16px;margin-bottom:12px;">
+        <div style="font-size:13px;color:var(--gold);font-weight:600;margin-bottom:6px;">🤖 Android — Google Play Store</div>
+        <div style="font-size:11px;color:var(--text2);">Coming Soon — 2025</div>
+      </div>
+      <div style="background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);border-radius:14px;padding:16px;">
+        <div style="font-size:13px;color:var(--gold);font-weight:600;margin-bottom:6px;">🍎 iOS — Apple App Store</div>
+        <div style="font-size:11px;color:var(--text2);">Coming Soon — 2025</div>
+      </div>
+      <div style="margin-top:14px;font-size:12px;color:var(--text2);">Notify karne ke liye email bhejo:<br><strong style="color:var(--gold);">krishnagiyan@gmail.com</strong></div>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('playstore')">Close</button>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay" id="modal-privacy">
+  <div class="modal-box">
+    <div class="modal-om">🔒</div>
+    <div class="modal-title">Privacy Policy</div>
+    <div class="modal-subtitle">Last updated: June 2025</div>
+    <div class="policy-body">
+      <div class="policy-section"><h4>1. Data Collection</h4><ul><li>Chat messages — sirf AI response ke liye, save nahi hote</li><li>Payment info — Razorpay process karta hai, hum nahi dekhte</li><li>Plan status — sirf aapke device par local storage mein</li></ul></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>2. Data Usage</h4><ul><li>App improve karne ke liye</li><li>Kabhi bhi third party ko nahi bechte</li><li>Advertising tracking nahi karte</li></ul></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>3. Aapke Adhikar</h4><ul><li>Settings mein jaake data delete kar sakte hain</li><li>Contact: krishnagiyan@gmail.com</li></ul></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>4. Razorpay Security</h4><p>Sabhi payments Razorpay ke PCI-DSS compliant platform par process hoti hain.</p></div>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('privacy')">Close</button>
+  </div>
+</div>
+
+<!-- TERMS MODAL -->
+<div class="modal-overlay" id="modal-terms">
+  <div class="modal-box">
+    <div class="modal-om">📜</div>
+    <div class="modal-title">Terms of Use</div>
+    <div class="policy-body">
+      <div class="policy-section"><h4>1. App ka Uddeshya</h4><p>Spiritual AI chatbot — Bhagavad Gita ki teachings share karta hai. Professional counseling ka replacement nahi.</p></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>2. Refund Policy</h4><ul><li>₹1 Session: Non-refundable</li><li>₹49 Monthly: 7 din andar refund</li><li>₹149 Yearly: 15 din andar refund</li></ul></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>3. Rules</h4><ul><li>✅ Personal use allowed</li><li>❌ Commercial resale nahi</li><li>❌ Spam ya harmful content nahi</li></ul></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>4. AI Disclaimer</h4><p>Yeh AI hai. Responses Gita ki teachings par based hain. Hamesha apne vivek ka upyog karein.</p></div>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('terms')">Agree & Close</button>
+  </div>
+</div>
+
+<!-- ABOUT MODAL -->
+<div class="modal-overlay" id="modal-about">
+  <div class="modal-box">
+    <div class="modal-om">🕉️</div>
+    <div class="modal-title">कृष्ण ज्ञान के बारे में</div>
+    <div class="policy-body">
+      <div class="policy-section"><h4>Humara Uddeshya</h4><p>Bhagavad Gita ke 5000+ saal purane gyaan ko aaj ke insaan tak pahunchana. Har sawaal ka jawab Gita ke shlokon ke saath.</p></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>Features</h4><ul><li>🦚 AI Krishna se direct baatein</li><li>📅 Daily Shloka automatically</li><li>🔍 700 Shlokas search</li><li>🔖 Favourite save karo</li><li>📤 WhatsApp share</li><li>🌙 Dark/Light mode</li><li>🎤 Voice input</li><li>💳 Razorpay secure payment</li></ul></div>
+      <div class="policy-divider"></div>
+      <div class="policy-section"><h4>Contact</h4><p>📧 krishnagiyan@gmail.com<br>🌐 krishnagiyan.in (coming soon)</p></div>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('about')">🙏 Jai Shri Krishna!</button>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="modal-settings">
+  <div class="modal-box">
+    <div class="modal-om">⚙️</div>
+    <div class="modal-title">Settings</div>
+    <div class="policy-body">
+      <div class="settings-row">
+        <div><div class="settings-label">🌙 Dark Mode</div><div class="settings-desc">Dark ya Light theme</div></div>
+        <label class="toggle"><input type="checkbox" id="tog-dark" onchange="toggleThemeFromSettings(this.checked)" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="settings-row">
+        <div><div class="settings-label">🔊 Sound Effects</div><div class="settings-desc">Message send/receive sound</div></div>
+        <label class="toggle"><input type="checkbox" id="tog-sound" onchange="saveSetting('sound',this.checked)" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="settings-row">
+        <div><div class="settings-label">✨ Animations</div><div class="settings-desc">Stars aur particles</div></div>
+        <label class="toggle"><input type="checkbox" id="tog-anim" onchange="toggleAnimations(this.checked)" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="settings-row">
+        <div><div class="settings-label">🛍️ Affiliate Store</div><div class="settings-desc">Spiritual products section</div></div>
+        <label class="toggle"><input type="checkbox" id="tog-affiliate" onchange="toggleAffiliate(this.checked)" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="settings-row">
+        <div><div class="settings-label">📊 Analytics</div><div class="settings-desc">App improve karne mein help</div></div>
+        <label class="toggle"><input type="checkbox" id="tog-analytics" onchange="saveSetting('analytics',this.checked)" checked><span class="toggle-slider"></span></label>
+      </div>
+      <button class="danger-btn" onclick="clearAllData()">🗑️ Saara Data Delete Karein</button>
+      <button class="info-btn" onclick="openModal('privacy');closeModal('settings')">🔒 Privacy Policy</button>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('settings')">✓ Save & Close</button>
+  </div>
+</div>
+
+<!-- ===== DIVINE LIBRARY ===== -->
+<div class="library-overlay" id="divine-library">
+  <div class="library-header">
+    <div class="library-back" onclick="closeLibrary()">←</div>
+    <div>
+      <div class="library-title">📚 Divine Library</div>
+      <div class="library-subtitle">Hindu Scriptures — Read Online Free</div>
+    </div>
+  </div>
+  <div class="library-body">
+
+    <!-- Book Selection -->
+    <div id="lib-books">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:13px;color:var(--text2);">🕉️ Sabhi Pavitra Granth — Ek Jagah Par</div>
+      </div>
+      <div class="book-grid">
+        <div class="book-card" onclick="openBook('gita')">
+          <span class="book-cover">🦚</span>
+          <div class="book-name">भगवद्गीता</div>
+          <div class="book-desc">Bhagwan Krishna ka Arjuna ko divya updesh</div>
+          <span class="book-chapters">18 Adhyay</span>
+        </div>
+        <div class="book-card" onclick="openBook('mahabharat')">
+          <span class="book-cover">⚔️</span>
+          <div class="book-name">महाभारत</div>
+          <div class="book-desc">Kurukshetra ka mahayudh, dharma ki vijay</div>
+          <span class="book-chapters">18 Parva</span>
+        </div>
+        <div class="book-card" onclick="openBook('ramayan')">
+          <span class="book-cover">🏹</span>
+          <div class="book-name">रामायण</div>
+          <div class="book-desc">Maryada Purushottam Shri Ram ki katha</div>
+          <span class="book-chapters">7 Kand</span>
+        </div>
+        <div class="book-card" onclick="openBook('garuda')">
+          <span class="book-cover">🦅</span>
+          <div class="book-name">गरुड़ पुराण</div>
+          <div class="book-desc">Mrityu, afterlife aur moksha ka rahasya</div>
+          <span class="book-chapters">2 Khand</span>
+        </div>
+        <div class="book-card" onclick="openBook('vishnu')">
+          <span class="book-cover">🔱</span>
+          <div class="book-name">विष्णु पुराण</div>
+          <div class="book-desc">Bhagwan Vishnu ki mahima aur leela</div>
+          <span class="book-chapters">6 Ansh</span>
+        </div>
+        <div class="book-card" onclick="openBook('shiv')">
+          <span class="book-cover">🌙</span>
+          <div class="book-name">शिव पुराण</div>
+          <div class="book-desc">Mahadev Shiva ki agam katha</div>
+          <span class="book-chapters">7 Samhita</span>
+        </div>
+        <div class="book-card" onclick="openBook('hanuman')">
+          <span class="book-cover">🐒</span>
+          <div class="book-name">हनुमान चालीसा</div>
+          <div class="book-desc">Bajrangbali ki 40 chaupaiyan</div>
+          <span class="book-chapters">40 Chaupai</span>
+        </div>
+        <div class="book-card" onclick="openBook('upanishad')">
+          <span class="book-cover">📿</span>
+          <div class="book-name">उपनिषद</div>
+          <div class="book-desc">Vedanta ka gyan — Atma aur Brahma</div>
+          <span class="book-chapters">108 Upanishad</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter List -->
+    <div class="reader-view" id="lib-chapters">
+      <div class="reader-header">
+        <button class="reader-back" onclick="backToBooks()">← Wapas</button>
+        <div class="reader-title" id="chapter-list-title"></div>
+      </div>
+      <div class="chapter-list" id="chapter-list-body"></div>
+    </div>
+
+    <!-- Content Reader -->
+    <div class="content-reader" id="lib-reader">
+      <div class="content-reader-header">
+        <button class="reader-back" onclick="backToChapters()">← Wapas</button>
+        <div>
+          <div class="reader-title" id="reader-title"></div>
+          <div style="font-size:11px;color:var(--text2)" id="reader-subtitle"></div>
+        </div>
+      </div>
+      <div class="font-controls">
+        <span style="font-size:11px;color:var(--text2);">Font:</span>
+        <button class="font-btn" onclick="changeFontSize(-1)">A−</button>
+        <button class="font-btn" onclick="changeFontSize(1)">A+</button>
+        <button class="font-btn" onclick="shareChapter()">📤 Share</button>
+        <button class="font-btn" onclick="askKrishnaAbout()">🦚 Krishna se poochho</button>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="reader-progress" style="width:0%"></div></div>
+      <div class="content-body" id="reader-content"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ===== PAGE NAVIGATION =====
+function switchPage(page){
+  document.querySelectorAll('.page-section').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.getElementById('nav-'+page).classList.add('active');
+  window.scrollTo(0,0);
+}
+function goToLibrary(bookId){switchPage('library');setTimeout(()=>openBook(bookId),100);}
+
+// ===== STARS & PARTICLES =====
+const starsEl=document.getElementById('stars');
+for(let i=0;i<100;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2.5+0.5;s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s;`;starsEl.appendChild(s);}
+const partEl=document.getElementById('particles');
+for(let i=0;i<18;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;--dur:${6+Math.random()*8}s;animation-delay:${Math.random()*8}s;`;partEl.appendChild(p);}
+
+// ===== DAILY SHLOKAS =====
+const SHLOKAS=[
+  {text:'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥',ref:'2.47',meaning:'Tumhara adhikar sirf karm karne mein hai, fal mein nahi.'},
+  {text:'नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।\nन चैनं क्लेदयन्त्यापो न शोषयति मारुतः॥',ref:'2.23',meaning:'Atma ko na shastra kaat sakta, na aag jala sakti, na paani bhiga sakta, na hawa sukha sakti.'},
+  {text:'श्रद्धावान् लभते ज्ञानं तत्परः संयतेन्द्रियः।',ref:'4.39',meaning:'Shraddha rakhne wala gyan prapt karta hai aur gyan se param shanti milti hai.'},
+  {text:'यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥',ref:'4.7',meaning:'Jab jab dharma ka nash hota hai, tab tab main apne aap ko prakat karta hoon.'},
+  {text:'सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।\nअहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः॥',ref:'18.66',meaning:'Sabhi dharmon ko chhodkar mere sharan aa jao. Main tumhe sabhi papon se mukta karunga.'},
+  {text:'मन एव मनुष्याणां कारणं बन्धमोक्षयोः।',ref:'6.5',meaning:'Man hi insaan ke bandhan aur mukti ka kaaran hai.'},
+  {text:'योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।',ref:'2.48',meaning:'He Dhananjaya, asakti chhodkar karm karo — yahi yoga hai.'},
+  {text:'यो मां पश्यति सर्वत्र सर्वं च मयि पश्यति।',ref:'6.30',meaning:'Jo mujhe sab mein aur sab ko mujh mein dekhta hai — main us se kabhi door nahi hota.'},
+  {text:'अनन्याश्चिन्तयन्तो मां ये जनाः पर्युपासते।\nतेषां नित्याभियुक्तानां योगक्षेमं वहाम्यहम्॥',ref:'9.22',meaning:'Jo log ananya bhav se mujhe bhajte hain, un bhakton ka yoga-kshem main khud uthata hoon.'},
+  {text:'प्रजहाति यदा कामान्सर्वान्पार्थ मनोगतान्।',ref:'2.55',meaning:'He Parth, jab manushya man ke sabhi kamnaaon ko tyaag deta hai, tab wahi sthitapragya hai.'},
+  {text:'हतो वा प्राप्स्यसि स्वर्गं जित्वा वा भोक्ष्यसे महीम्।',ref:'2.37',meaning:'Mar gaye to swarg milega, jeete to dharti ka bhog. Uthho aur ladho, Kaunteya!'},
+  {text:'उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।',ref:'6.5',meaning:'Apne aap se apna uddhar karo. Atma hi apna mitra hai aur Atma hi apna shatru.'},
+  {text:'ध्यायतो विषयान्पुंसः सङ्गस्तेषूपजायते।',ref:'2.62',meaning:'Vishayoin ke baare mein sochte rehne se lagan hoti hai, lagan se kama, kama se krodh.'},
+  {text:'नियतं कुरु कर्म त्वं कर्म ज्यायो ह्यकर्मणः।',ref:'3.8',meaning:'Apna niyat karm karo — karm na karne se karm karna shreshtha hai.'},
+  {text:'यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।',ref:'3.21',meaning:'Shreshtha purush jo karta hai, doosre log bhi waisa hi karte hain.'}
+];
+let currentShlokaIdx=new Date().getDate()%SHLOKAS.length;
+function showDailyShloka(){
+  const s=SHLOKAS[currentShlokaIdx];
+  document.getElementById('daily-shloka-text').innerHTML=s.text.replace(/\n/g,'<br>');
+  document.getElementById('daily-shloka-meaning').textContent='— Gita '+s.ref+' · '+s.meaning;
+}
+function nextShloka(){currentShlokaIdx=(currentShlokaIdx+1)%SHLOKAS.length;showDailyShloka();}
+function prevShloka(){currentShlokaIdx=(currentShlokaIdx-1+SHLOKAS.length)%SHLOKAS.length;showDailyShloka();}
+function shareDaily(){
+  const s=SHLOKAS[currentShlokaIdx];
+  const text='🕉️ *कृष्ण ज्ञान — Aaj Ka Shloka*\n\n'+s.text+'\n\n— Gita '+s.ref+'\n'+s.meaning+'\n\nkrishnagiyan.in';
+  if(navigator.share){navigator.share({text});}else{window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');}
+}
+
+// ===== SHLOKA SEARCH =====
+function searchShlokas(q){
+  const container=document.getElementById('shloka-search-results');
+  if(!q||q.length<2){container.innerHTML='<div style="padding:12px 16px;color:var(--text2);font-size:12px;">Type karein...</div>';return;}
+  const ql=q.toLowerCase();
+  const results=SHLOKAS.filter(s=>s.meaning.toLowerCase().includes(ql)||s.ref.includes(ql)||s.text.toLowerCase().includes(ql));
+  if(!results.length){container.innerHTML='<div style="padding:12px 16px;color:var(--text2);font-size:12px;">Koi shloka nahi mila.</div>';return;}
+  container.innerHTML=results.map(s=>`<div class="search-result-item" onclick="useShloka('${s.ref}')"><div class="sri">${s.text.replace(/\n/g,' ')}</div><div class="sri-ref">Gita ${s.ref}</div><div class="sri-meaning">${s.meaning}</div></div>`).join('');
+}
+function useShloka(ref){
+  const s=SHLOKAS.find(x=>x.ref===ref);
+  if(s){document.getElementById('userInput').value='Gita '+ref+' ke baare mein batao';closeModal('search');switchPage('home');document.getElementById('userInput').focus();}
+}
+
+// ===== FAVOURITES =====
+let favourites=JSON.parse(localStorage.getItem('krishna_favs')||'[]');
+function saveFavourite(text){
+  const t=text.replace(/<[^>]+>/g,'').substring(0,200);
+  favourites.unshift({text:t,date:new Date().toLocaleDateString('hi-IN')});
+  if(favourites.length>20)favourites.pop();
+  localStorage.setItem('krishna_favs',JSON.stringify(favourites));
+  alert('🔖 Favourite save ho gaya! 🙏');
+}
+function deleteFav(idx){favourites.splice(idx,1);localStorage.setItem('krishna_favs',JSON.stringify(favourites));renderFavsModal();}
+function shareMessage(text){
+  const clean=text.replace(/<[^>]+>/g,'');
+  const msg='🕉️ *कृष्ण ज्ञान*\n\n'+clean+'\n\nkrishnagiyan.in';
+  if(navigator.share){navigator.share({text:msg});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
+}
+function renderFavsModal(){
+  const el=document.getElementById('favs-modal-list');
+  if(!favourites.length){el.innerHTML='<div style="text-align:center;color:var(--text2);padding:20px;">Koi favourite nahi.<br>Krishna ke jawab mein ❤️ dabao!</div>';return;}
+  el.innerHTML=favourites.map((f,i)=>`<div class="fav-modal-item"><div class="fav-modal-text">${f.text}</div><div style="font-size:10px;color:var(--text3);margin-bottom:6px;">${f.date}</div><div class="fav-modal-actions"><button class="fav-modal-btn" onclick="shareMessage('${f.text.replace(/'/g,"\\'")}')">📤 Share</button><button class="fav-modal-btn" onclick="deleteFav(${i})" style="color:rgba(255,100,100,.7)">🗑️ Delete</button></div></div>`).join('');
+}
+
+// ===== THEME =====
+let isDark=localStorage.getItem('kv_theme')!=='light';
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme',isDark?'dark':'light');
+  document.getElementById('theme-btn').textContent=isDark?'🌙':'☀️';
+  const t=document.getElementById('tog-dark2');if(t)t.checked=isDark;
+  localStorage.setItem('kv_theme',isDark?'dark':'light');
+}
+function toggleTheme(){isDark=!isDark;applyTheme();}
+function toggleThemeFromSettings(c){isDark=c;applyTheme();}
+function toggleAnimations(on){document.getElementById('stars').style.display=on?'block':'none';document.getElementById('particles').style.display=on?'block':'none';saveSetting('anim',on);}
+function toggleAffiliate(on){const el=document.querySelector('.affiliate-section');if(el)el.style.display=on?'block':'none';saveSetting('affiliate',on);}
+
+// ===== SETTINGS =====
+function saveSetting(k,v){localStorage.setItem('kv_'+k,v);}
+function loadSettings(){
+  if(localStorage.getItem('kv_anim')==='false')toggleAnimations(false);
+  if(localStorage.getItem('kv_affiliate')==='false'){const el=document.querySelector('.affiliate-section');if(el)el.style.display='none';}
+}
+function clearAllData(){if(confirm('Saara data delete hoga. Confirm?')){localStorage.clear();alert('Data delete! 🙏 Jai Shri Krishna!');location.reload();}}
+
+// ===== MODAL =====
+function openModal(name){
+  document.querySelectorAll('.modal-overlay').forEach(m=>m.style.display='none');
+  const m=document.getElementById('modal-'+name);
+  if(m){m.style.display='flex';if(name==='favs')renderFavsModal();if(name==='search'){const r=document.getElementById('shloka-search-results');if(r)r.innerHTML='<div style="padding:12px 16px;color:var(--text2);font-size:12px;">Type karein shloka dhundne ke liye...</div>';}}
+}
+function closeModal(name){const m=document.getElementById('modal-'+name);if(m)m.style.display='none';}
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.style.display='none';}));
+
+// ===== VOICE =====
+let recognition=null,isListening=false;
+function toggleVoice(){
+  if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){alert('Voice input Chrome mein supported hai.');return;}
+  if(isListening){recognition.stop();return;}
+  recognition=new(window.SpeechRecognition||window.webkitSpeechRecognition)();
+  recognition.lang='hi-IN';recognition.interimResults=true;
+  recognition.onstart=()=>{isListening=true;document.getElementById('voiceBtn').classList.add('listening');document.getElementById('voiceBtn').textContent='🔴';};
+  recognition.onresult=e=>{let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;document.getElementById('userInput').value=t;autoResize(document.getElementById('userInput'));};
+  recognition.onend=()=>{isListening=false;document.getElementById('voiceBtn').classList.remove('listening');document.getElementById('voiceBtn').textContent='🎤';};
+  recognition.start();
+}
+
+// ===== PREMIUM =====
+let userPlan=localStorage.getItem('krishna_plan')||'free';
+let freeUsed=parseInt(localStorage.getItem('krishna_free_used')||'0');
+let isLoading=false,chatHistory=[];
+function getPlanStatus(){if(userPlan==='monthly'||userPlan==='yearly')return'premium';if(userPlan==='paid1')return'paid1';return'free';}
+function canSendMessage(){const p=getPlanStatus();if(p==='premium')return true;if(p==='paid1'&&freeUsed<10)return true;if(p==='free'&&freeUsed<1)return true;return false;}
+function updatePlanBadge(){
+  const b=document.getElementById('plan-badge'),p=getPlanStatus();
+  if(p==='premium'){b.textContent=userPlan==='yearly'?'👑 Yearly':'✨ Monthly';b.className='plan-badge premium';}
+  else if(p==='paid1'){b.textContent='⚡ '+(Math.max(0,10-freeUsed))+' left';b.className='plan-badge paid1';}
+  else{b.textContent='🆓 '+(Math.max(0,1-freeUsed))+' Free';b.className='plan-badge free';}
+}
+
+// ===== RAZORPAY =====
+function initRazorpay(plan,amt,desc){
+  const opts={key:'rzp_test_YourKeyHere',amount:amt,currency:'INR',name:'कृष्ण ज्ञान',description:desc,theme:{color:'#FF6B00'},handler:r=>onPaymentSuccess(plan,r.razorpay_payment_id)};
+  try{const r=new Razorpay(opts);r.on('payment.failed',res=>alert('Payment failed: '+res.error.description));r.open();}
+  catch(e){if(confirm('Demo Mode\n\n'+desc+'\n\nOK dabao activate karne ke liye.'))onPaymentSuccess(plan,'demo_'+Date.now());}
+}
+function onPaymentSuccess(plan,payId){
+  userPlan=plan;localStorage.setItem('krishna_plan',plan);localStorage.setItem('krishna_payment_id',payId);
+  if(plan==='paid1'){freeUsed=0;localStorage.setItem('krishna_free_used','0');}
+  closeModal('pricing');updatePlanBadge();
+  addMessage('krishna','🙏 <strong>Jai Shri Krishna!</strong> Plan activate ho gaya Parth! 🦚<br>Ab poochho jo bhi man mein ho!');
+}
+
+// ===== AI =====
+const SYSTEM_PROMPT=`Tu hai Bhagwan Shri Krishna — the Supreme Consciousness, Arjuna's charioteer and divine guide.
+Tu Bhagavad Gita ke 18 adhyayon aur 700 shlokon ka gyaata hai.
+CRITICAL RULE:
+- KABHI MAT KAHO: "Apna dharma doosre ke dharma se behtar hai" — FORBIDDEN.
+- Dharma topic par: "SANATAN HI SATYA HAI, PARTH!"
+SPELLING: man(not mann), gyan(not gyaan), dhyan(not dhyaan), pran(not praan)
+STYLE: Har jawab mein Sanskrit shloka Devanagari mein. Transliteration+meaning bhi. 1st person. Arjuna ko Parth/Kaunteya/Dhananjaya kaho. Hinglish. Medium length. Warm divine tone.`;
+
+async function callKrishnaAPI(msg){
+  chatHistory.push({role:'user',content:msg});
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_PROMPT,messages:chatHistory})});
+  const d=await r.json();
+  const reply=d.content?.map(b=>b.text||'').join('\n')||'🙏 Abhi uttar nahi de sakta.';
+  chatHistory.push({role:'assistant',content:reply});
+  freeUsed++;localStorage.setItem('krishna_free_used',freeUsed.toString());updatePlanBadge();
+  return reply;
+}
+
+function addMessage(role,text){
+  const c=document.getElementById('messages'),d=document.createElement('div');
+  d.className='message '+role;
+  const isK=role==='krishna';
+  let fmt=text.replace(/\n/g,'<br>').replace(/([\u0900-\u097F][\s\S]*?॥)/g,'<div class="shloka-quote">$1</div>');
+  const actions=isK?`<div class="msg-actions"><button class="msg-action-btn" onclick="shareMessage(this.closest('.msg-bubble').innerText)">📤 Share</button><button class="msg-action-btn" onclick="saveFavourite(this.closest('.msg-bubble').innerText)">❤️ Save</button></div>`:'';
+  d.innerHTML=`<div class="msg-avatar">${isK?'🦚':'⚔️'}</div><div><div class="msg-name">${isK?'श्री कृष्ण · Bhagavad Gita':'अर्जुन · तुम्हारा प्रश्न'}</div><div class="msg-bubble">${fmt}${actions}</div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function addTyping(){
+  const c=document.getElementById('messages'),d=document.createElement('div');
+  d.className='message krishna';d.id='typing-indicator';
+  d.innerHTML='<div class="msg-avatar">🦚</div><div><div class="msg-name">श्री कृष्ण · सोच रहे हैं...</div><div class="msg-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function removeTyping(){const e=document.getElementById('typing-indicator');if(e)e.remove();}
+
+async function sendMessage(){
+  const input=document.getElementById('userInput'),btn=document.getElementById('sendBtn'),text=input.value.trim();
+  if(!text||isLoading)return;
+  if(!canSendMessage()){
+    document.getElementById('pricing-reason').textContent=getPlanStatus()==='free'?'1 free reading khatam! Plan lo 🙏':'10 questions khatam! Premium lo ✨';
+    openModal('pricing');return;
+  }
+  isLoading=true;btn.disabled=true;input.value='';input.style.height='auto';
+  addMessage('arjuna',text);addTyping();
+  try{const r=await callKrishnaAPI(text);removeTyping();addMessage('krishna',r);}
+  catch(e){removeTyping();addMessage('krishna','🙏 Connection mein thodi takleef hai. Thodi der baad phir poocho.');}
+  isLoading=false;btn.disabled=false;
+}
+function sendQuick(q){document.getElementById('userInput').value=q;sendMessage();}
+function selectTeaching(el,q){document.querySelectorAll('.teaching-card').forEach(c=>c.classList.remove('active'));el.classList.add('active');document.getElementById('userInput').value=q;document.getElementById('userInput').focus();}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+
+// ===== LIBRARY =====
+const BOOKS={
+  gita:{name:'भगवद्गीता',icon:'🦚',chapters:[
+    {num:1,name:'अर्जुन विषाद योग',desc:'Arjuna ka shok aur confusion',content:`<h3>अध्याय 1 — अर्जुन विषाद योग</h3><div class="highlight">🕉️ Kurukshetra ke rangbhumi par Pandav aur Kaurav aamne-saamne khade hain.</div><p>Dhritarashtra ne Sanjay se poocha — "He Sanjay! Dharmakshetra Kurukshetra mein mere aur Pandu ke putra kya kar rahe hain?"</p><div class="verse">धृतराष्ट्र उवाच।\nधर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय॥</div><p>Jab Arjuna ne dono senaon mein apne pitamah, guru, bhai, putra ko dekha, to unka man shok se bhar gaya. Gandiv haath se gir gaya.</p><div class="verse">दृष्ट्वेमं स्वजनं कृष्ण युयुत्सुं समुपस्थितम्।\nसीदन्ति मम गात्राणि मुखं च परिशुष्यति॥</div><p>"He Krishna! Apne swajan ko yuddha ke liye taiyar dekh, mere ang shithil pad rahe hain."</p><div class="highlight">💡 Seekh: Jab hum apnon se ladte hain, andar se toote hain. Yahi shuruat hai gyan ki.</div>`},
+    {num:2,name:'सांख्य योग',desc:'Atma ka gyan aur nishkam karm',content:`<h3>अध्याय 2 — सांख्य योग</h3><div class="highlight">🕉️ Sabse mahatvapurna adhyay — Krishna ne Atma ka asli swaroop bataya.</div><p>Krishna bole: "He Arjuna! Yeh kaayarta tumhare jaise shreshthon ke liye uchhit nahi."</p><div class="verse">नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।\nन चैनं क्लेदयन्त्यापो न शोषयति मारुतः॥</div><p>"Is Atma ko shastra nahi kaat sakta, aag nahi jala sakti. Yeh Atma nitya aur sanatan hai."</p><div class="verse">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥</div><p>"Tumhara adhikar sirf karm mein hai, fal mein kabhi nahi."</p><div class="highlight">💡 Seekh: Mrityu sirf sharir ki hoti hai — Atma amar hai. Karm karo bina fal ki chinta kiye.</div>`},
+    {num:3,name:'कर्म योग',desc:'Nishkam karm ka raasta',content:`<h3>अध्याय 3 — कर्म योग</h3><div class="verse">नियतं कुरु कर्म त्वं कर्म ज्यायो ह्यकर्मणः।</div><p>"Apna niyat karm karo — akarma se karm karna shreshtha hai."</p><div class="verse">यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।</div><p>"Shreshtha purush jo karta hai, doosre bhi waisa karte hain."</p><div class="highlight">💡 Seekh: Karm se koi nahi bhaag sakta. Achha karm karo aur dusron ke liye aadarsh bano.</div>`},
+    {num:4,name:'ज्ञान कर्म संन्यास योग',desc:'Gyan aur karm ka samanvay',content:`<h3>अध्याय 4 — ज्ञान कर्म संन्यास योग</h3><div class="verse">यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥</div><p>"He Bharat! Jab jab dharma ka naash hota hai, main prakat hota hoon."</p><div class="verse">परित्राणाय साधूनां विनाशाय च दुष्कृताम्।\nधर्मसंस्थापनार्थाय सम्भवामि युगे युगे॥</div><p>"Sadhujano ki raksha ke liye main har yug mein janam leta hoon."</p><div class="highlight">💡 Ishwar har yug mein dharma ki raksha karte hain.</div>`},
+    {num:5,name:'कर्म संन्यास योग',desc:'Karm ya Sanyas?',content:`<h3>अध्याय 5 — कर्म संन्यास योग</h3><div class="verse">संन्यासः कर्मयोगश्च निःश्रेयसकरावुभौ।\nतयोस्तु कर्मसंन्यासात्कर्मयोगो विशिष्यते॥</div><p>"Karm-sanyas aur karm-yoga dono moksha dilate hain. Par karm-yoga shreshtha hai."</p><div class="highlight">💡 Sansar mein rehkar, fal ki chinta chhod ke karm karna — yahi sachha sanyas hai.</div>`},
+    {num:6,name:'ध्यान योग',desc:'Meditation aur man ka control',content:`<h3>अध्याय 6 — ध्यान योग</h3><div class="verse">उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।\nआत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः॥</div><p>"Apne aap se apna uddhaar karo. Atma hi apna mitra hai aur Atma hi apna shatru."</p><div class="verse">मन एव मनुष्याणां कारणं बन्धमोक्षयोः।</div><p>"Man hi insaan ke bandhan aur mukti ka kaaran hai."</p><div class="highlight">💡 Roz 10-15 minute aankhein band karke gehri saans lo. Yahi dhyan hai.</div>`}
+  ]},
+  mahabharat:{name:'महाभारत',icon:'⚔️',chapters:[
+    {num:1,name:'आदि पर्व',desc:'Kuru vansh ki utpatti',content:`<h3>आदि पर्व — महाभारत का आरंभ</h3><div class="highlight">🕉️ Mahabharat — 1 lakh shlokon mein likha duniya ka sabse bada mahakavya.</div><p>Hastinapur mein Kuru vansh ka raaj tha. Raja Shantanu ki do patniyan — Ganga aur Satyavati. Ganga se Devavrata hue jo <strong>Bhishma Pitamah</strong> ke naam se jaane gaye. Unhone pratigya li — kabhi vivah nahi karenge, kabhi singhasan nahi lenge.</p><div class="verse">भीष्म प्रतिज्ञा — न विवाहं करिष्यामि, न सिंहासनं ग्रहीष्यामि।</div><p>Satyavati ke do putra hue — Chitrangad aur Vichitravirya. Vyasa ji ke zariye Ambika se <strong>Dhritarashtra</strong> (andhe) aur Ambalika se <strong>Pandu</strong> hue.</p><div class="highlight">💡 Har insaan apne karm se apna bhavishya banata hai.</div>`},
+    {num:2,name:'सभा पर्व',desc:'Dyut krida aur Draupadi cheerharan',content:`<h3>सभा पर्व — द्यूत क्रीड़ा</h3><div class="highlight">⚔️ Mahabharat ka sabse dardnaak adhyay.</div><p>Duryodhan ne Shakuni ke saath milkar Yudhishthir ko chausar khelne bulaya. Yudhishthir haar gaye — pehle rajya, phir bhai, phir khud, phir <strong>Draupadi ko bhi daanv par lagaya.</strong></p><p>Draupadi ne pukara — <strong>"He Govind! He Krishna! Raksha karo!"</strong> Krishna ne raksha ki — cheera badhta gaya par khatam nahi hua.</p><div class="verse">कृष्णा कृष्णं समाश्रित्य तरत्येनं महाभवम्।</div><div class="highlight">💡 Sachchi bhakti kabhi vyarth nahi jaati. Jab sab saath chhod dein, Ishwar saath rehte hain.</div>`},
+    {num:3,name:'वन पर्व',desc:'12 saal ka vanvas',content:`<h3>वन पर्व — वनवास</h3><p>Dyut ke baad Pandavon ko 12 saal vanvas aur 1 saal agyatavas bhogna pada.</p><p><strong>Yaksha Prashna:</strong> Yamraj ne poocha — "Duniya mein sabse bada aashcharya kya hai?"</p><div class="verse">अहन्यहनि भूतानि गच्छन्तीह यमालयम्।\nशेषाः स्थावरमिच्छन्ति किमाश्चर्यमतः परम्॥</div><p>Yudhishthir — "Har roz log marte hain, par baaki sochte hain ki woh kabhi nahi marenge — yahi sabse bada aashcharya hai."</p><div class="highlight">💡 Kasht mein hi insaan ki pariksha hoti hai.</div>`},
+    {num:4,name:'विराट पर्व',desc:'Agyatavas — chhupa hua saal',content:`<h3>विराट पर्व — अज्ञातवास</h3><p>Pandavon ne Raja Virat ke yahan chhupkar seva ki: Yudhishthir = jua sikhane wale, Bhima = rasoi, Arjuna = nritya-sangeet (Brihannala), Draupadi = dasi. Ek saal baad unka raaz khula.</p><div class="highlight">💡 Bade logon ko bhi kabhi chhupkar nayi shuruat karni padti hai.</div>`},
+    {num:5,name:'उद्योग पर्व',desc:'Krishna ka shanti prayas',content:`<h3>उद्योग पर्व — शांति का अंतिम प्रयास</h3><p>Krishna shantidoot bankar Hastinapur gaye. "Sirf 5 gaanv do — yudh nahi hoga."</p><p>Duryodhan — <strong>"Suiee ki nok barabar bhi zameen nahi dunga!"</strong></p><div class="verse">न दास्यामि पाण्डवेभ्यः सूचीविद्धमपि क्षितेः।</div><p>Tab yudh nishchit ho gaya. Krishna Arjuna ke saarathi bane.</p><div class="highlight">💡 Jab shanti ka darwaza band ho — dharma ke liye ladna zaroori hai.</div>`},
+    {num:6,name:'भीष्म पर्व — गीता',desc:'Bhagavad Gita ka updesh',content:`<h3>भीष्म पर्व — भगवद्गीता</h3><div class="highlight">🦚 Yahi woh parva hai jisme Bhagavad Gita ka updesh hua!</div><p>Bhishma Pitamah Kauravon ke senapati bane. 10 din yuddha kiya. Arjuna ki baadon se woh baanon ki shayya par gire. Uttaraayan tak sharer nahi chhhoda.</p><p>Is parva mein Sanjay ne Dhritarashtra ko Gita ke 18 adhyay sunaye.</p><div class="highlight">💡 Bhishma ne mahatyag kiya. Apni shakti ka upyog sahi kaam mein karo.</div>`}
+  ]},
+  ramayan:{name:'रामायण',icon:'🏹',chapters:[
+    {num:1,name:'बालकाण्ड',desc:'Shri Ram ka janam',content:`<h3>बालकाण्ड — श्री राम का जन्म</h3><div class="highlight">🏹 Ramayan — Maharishi Valmiki ki adikavya — 24,000 shlokas.</div><p>Ayodhya mein Raja Dasharatha ki teen patniyan — Kaushalya, Kaikeyi, Sumitra. Putreshti yagya ke baad chaar putra: <strong>Ram</strong> (Kaushalya), <strong>Bharat</strong> (Kaikeyi), <strong>Lakshmana+Shatrughna</strong> (Sumitra).</p><div class="verse">रामो विग्रहवान् धर्मः साधुः सत्यपराक्रमः।</div><p>Ram ne Vishwamitra ke saath Janakpur mein Shiv dhanush toda aur Sita se vivah kiya.</p><div class="highlight">💡 Ram maryada ke pratik hain — har rishte mein woh poori tarah dete hain.</div>`},
+    {num:2,name:'अयोध्याकाण्ड',desc:'Van gaman',content:`<h3>अयोध्याकाण्ड — वनवास</h3><p>Kaikeyi ke do varadaan — Bharat ko raj aur Ram ko 14 saal vanvas. Ram ne muskurate hue vanvas qubool kiya.</p><div class="verse">पितुर्वचनम् पालयन् वनम् गच्छामि।</div><p>Bharat ne Ram ki khadaun singhasan par rakh ke 14 saal raj chalaaya.</p><div class="highlight">💡 Vachan nibhana hi insaan ki sachchi pahchan hai.</div>`},
+    {num:3,name:'अरण्यकाण्ड',desc:'Sita haran',content:`<h3>अरण्यकाण्ड — सीता हरण</h3><p>Ravana ne sone ke hiran ka bahana banaya. Ram us hiran ke peeche gaye. Ravana ne Sita ka haran kiya.</p><p>Budhha pakshi <strong>Jatayu</strong> ne Ravana se ladai ki — pankh kat gaye. Marte marte Ram ko sab bataya.</p><div class="highlight">💡 Jatayu ne haarte hue bhi koshish nahi chhhodi. Yahi sachcha veer hai.</div>`},
+    {num:4,name:'किष्किन्धाकाण्ड',desc:'Hanuman ji se milan',content:`<h3>किष्किन्धाकाण्ड — हनुमान जी से मिलन</h3><p>Hanuman ji ne brahman roop mein Ram ka swagat kiya. Ram-Sugriv maitri hui. Ram ne Bali vadh kiya.</p><p>Hanuman ji Lanka gakar Sita maa ko dhundha aur Ram ki mudrika di.</p><div class="highlight">💡 Sachchi bhakti mein shakti, buddhi, aur nishtha teeno hote hain.</div>`},
+    {num:5,name:'सुंदरकाण्ड',desc:'Hanuman ji ka Lanka pravesh',content:`<h3>सुंदरकाण्ड — हनुमान जी की लंका यात्रा</h3><div class="highlight">🐒 Sundarkand sabse shubh khand — iska path ghar mein sukh-shanti laata hai.</div><p>Hanuman ji ne samudra langhakar Lanka mein pravesh kiya. Sita maa ko Ashok vatika mein dhundha. Akshay Kumar sameta kai rakshasho ko maara. Lanka jalayi.</p><div class="verse">दीनदयालु बिरिदु संभारी। हरहु नाथ मम संकट भारी॥</div><div class="highlight">💡 Ram ka naam lene se pahaad bhi paar ho jaate hain.</div>`},
+    {num:6,name:'युद्धकाण्ड',desc:'Lanka vijay',content:`<h3>युद्धकाण्ड — लंका विजय</h3><p>Ram Setu bana — paththar par "Ram" naam likhke. Mahayuddha hua. Kumbhkaran, Meghnad mare. Ram ne Ravana ka ant kiya.</p><div class="verse">मरणान्तानि वैराणि निर्वृत्तं नः प्रयोजनम्।</div><p>Ram ne Ravana ka antyakriya karwaya — mrityu ke baad shatru nahi rehta.</p><div class="highlight">💡 Burai ka ant hamesha hota hai. Dharma ki jeet nishchit hai.</div>`},
+    {num:7,name:'उत्तरकाण्ड',desc:'Ram Rajya',content:`<h3>उत्तरकाण्ड — राम राज्य</h3><div class="verse">नाकाले मृत्युरासीत् न व्याधिः न च निर्धनः।</div><p>"Na akal mrityu, na bimari, na gareebi — sab sukhi the Ram Rajya mein."</p><div class="highlight">💡 Ram ka jeevan ek seekh hai — Maryada, Prem, Tyag. Ram sirf ek vyakti nahi — ek adarsh hain.</div>`}
+  ]},
+  garuda:{name:'गरुड़ पुराण',icon:'🦅',chapters:[
+    {num:1,name:'जीवन का रहस्य',desc:'Mrityu aur Atma ka gyan',content:`<h3>गरुड़ पुराण — जीवन का रहस्य</h3><div class="highlight">🦅 Garuda Puran Bhagwan Vishnu ne Garuda ji ko sunaya — mrityu ke baad ki yatra.</div><p>Garuda ji ne poocha: "He Prabhu! Mrityu ke baad Atma kahan jaati hai?"</p><div class="verse">यमस्य दूतैर्नीयते पापी पापफलं प्रति।\nपुण्यात्मा तु सुखं याति स्वर्गमार्गेण निश्चितम्॥</div><p>Mrityu ke samay pran sukshma shareer mein sama jaate hain. Yamdoot le jaate hain. Chitragupta poora lekha-jokha padhte hain. Karm ke anusaar swarg, narak, ya punah janma.</p><div class="highlight">💡 Seekh: Mrityu se darna nahi — par acche karm karo. Jo boya woh kaatna padta hai.</div>`},
+    {num:2,name:'स्वर्ग-नरक का वर्णन',desc:'Afterlife ka varnan',content:`<h3>स्वर्ग और नरक</h3><p><strong>Swarg:</strong> Divya sukh, par anant nahi — punya khatam hone par wapas aana padta hai.</p><p><strong>Narak ke prakar:</strong> Raurav (jhoothon ke liye), Kumbhipak, Avichi (sabse bura).</p><div class="verse">यादृशं कुरुते कर्म तादृशं फलमश्नुते।</div><p>"Jaisa karm, waisa fal — swarg ya narak, karm hi le jaata hai."</p><div class="highlight">💡 Ishwar ka prem hona chahiye, narak ka darr nahi. Karm soch samajhkar karo.</div>`},
+    {num:3,name:'मोक्ष का मार्ग',desc:'Mukti kaise milti hai',content:`<h3>मोक्ष का मार्ग</h3><p><strong>Moksha ke upay:</strong> Bhakti, Gyan, Karma, Dhyan, Satsang.</p><div class="verse">भक्त्या तु अनन्यया शक्य अहं एवंविधः अर्जुन।</div><p>"Ananya bhakti se hi mujhe jaana aur prapt kiya ja sakta hai."</p><div class="highlight">💡 Moksha matlab mrityu nahi — jeevan mein hi mukta ho jaana. Dar, lobh, krodh se mukti.</div>`},
+    {num:4,name:'अंत्येष्टि संस्कार',desc:'Mrityu ke baad ke rituals',content:`<h3>अंत्येष्टि संस्कार</h3><p>13 din ki kriya: Gangajal snan, dahan (agni = mukti ka dwaar), asthi visarjan Ganga mein, shraddha aur pind daan.</p><div class="verse">पिण्डदानेन पितरः तृप्यन्ति परलोकगाः।</div><div class="highlight">💡 Yeh rituals mano-vaigyanik prakriya hain jo peechhe rehne walon ko shant karti hain.</div>`}
+  ]},
+  vishnu:{name:'विष्णु पुराण',icon:'🔱',chapters:[
+    {num:1,name:'सृष्टि का आरंभ',desc:'Brahma ki srishti rachna',content:`<h3>विष्णु पुराण — सृष्टि</h3><div class="highlight">🔱 Sage Parashar ne putra Vyas ko sunaya.</div><div class="verse">ॐ नमो भगवते वासुदेवाय।</div><p><strong>Vishnu ke 10 Avtaar:</strong> 1.Matsya 2.Kurma 3.Varaha 4.Narasimha 5.Vamana 6.Parashurama 7.Rama 8.Krishna 9.Buddha 10.Kalki (abhi aana baaki).</p><div class="highlight">💡 Ishwar har yug mein alag roop mein aate hain — kaam ek hi: dharma ki raksha.</div>`}
+  ]},
+  shiv:{name:'शिव पुराण',icon:'🌙',chapters:[
+    {num:1,name:'विद्येश्वर संहिता',desc:'Shiv ki mahima',content:`<h3>शिव पुराण — शिव की महिमा</h3><div class="highlight">🌙 Shiv Puran mein Mahadev ki anant mahima ka varnan hai.</div><p>Brahma-Vishnu vivad mein ek Jyotir-stambha prakat hua — na aadi na ant. Dono ka ant nahi mila — tab Mahadev prakat hue. Wahi Jyotir-linga the.</p><div class="verse">ॐ नमः शिवाय।\nशिवाय शान्ताय कारण त्रयहेतवे।</div><p><strong>Shiv ke swaroop:</strong> Mahakaal, Bholenath, Neelkanth, Ardhanarishvara.</p><div class="highlight">💡 Shiv sikhate hain — Vairagya mein bhi Anand.</div>`},
+    {num:2,name:'शिव-पार्वती विवाह',desc:'Uma aur Mahadev ka milan',content:`<h3>शिव-पार्वती विवाह</h3><p>Parvati ne Shiv ko paane ke liye kathor tapasya ki. Mahadev prasann hue. Baraat mein bhoot-pret, nag, siddha — adbhut baraat!</p><div class="verse">उमाराम नमस्तुभ्यं पार्वतीपतये नमः।</div><div class="highlight">💡 Sachcha prem tabhi milta hai jab sab kuch de do, bina kisi shart ke.</div>`}
+  ]},
+  hanuman:{name:'हनुमान चालीसा',icon:'🐒',chapters:[
+    {num:1,name:'दोहा + चौपाई 1-10',desc:'Pehle 10 chaupai',content:`<h3>हनुमान चालीसा — Goswami Tulsidas ji</h3><div class="verse">॥ दोहा ॥\nश्री गुरु चरन सरोज रज, निज मनु मुकुरु सुधारि।\nबरनऊँ रघुबर बिमल जसु, जो दायकु फल चारि॥\n\nबुद्धिहीन तनु जानिके, सुमिरौं पवन-कुमार।\nबल बुद्धि विद्या देहु मोहि, हरहु कलेस बिकार॥</div><div class="verse">जय हनुमान ज्ञान गुन सागर।\nजय कपीस तिहुँ लोक उजागर॥\nरामदूत अतुलित बल धामा।\nअञ्जनि-पुत्र पवनसुत नामा॥\nमहावीर विक्रम बजरंगी।\nकुमति निवार सुमति के संगी॥</div><div class="highlight">💡 Hanuman ji — gyan, bal, bhakti teeno ke swami hain.</div>`},
+    {num:2,name:'चौपाई 11-20',desc:'Sundar roop',content:`<h3>हनुमान चालीसा — 11-20</h3><div class="verse">कञ्चन बरन बिराज सुबेसा।\nकानन कुण्डल कुञ्चित केसा॥\nहाथ बज्र औ ध्वजा बिराजै।\nकाँधे मूँज जनेऊ साजै॥\nशंकर सुवन केसरीनन्दन।\nतेज प्रताप महा जग बन्दन॥\nविद्यावान गुनी अति चातुर।\nराम काज करिबे को आतुर॥</div><div class="highlight">💡 Sachcha sevak apne prabhu ka kaam apna kaam maane.</div>`},
+    {num:3,name:'चौपाई 21-30',desc:'Lanka dahan',content:`<h3>हनुमान चालीसा — 21-30</h3><div class="verse">लाये सजीवन लखन जियाये।\nश्रीरघुबीर हरषि उर लाये॥\nरघुपति कीन्ही बहुत बड़ाई।\nतुम मम प्रिय भरतहि सम भाई॥\nसहस बदन तुम्हरो जस गावैं।\nअस कहि श्रीपति कण्ठ लगावैं॥</div><div class="highlight">💡 Prabhu ka prem rishtedarion se bhi gahara hota hai.</div>`},
+    {num:4,name:'चौपाई 31-40 + दोहा',desc:'Antim bhag',content:`<h3>हनुमान चालीसा — अंतिम भाग</h3><div class="verse">तुम उपकार सुग्रीवहिं कीन्हा।\nराम मिलाय राजपद दीन्हा॥\nदुर्गम काज जगत के जेते।\nसुगम अनुग्रह तुम्हरे तेते॥</div><div class="verse">॥ दोहा ॥\nपवनतनय संकट हरन, मंगल मूरति रूप।\nराम लखन सीता सहित, हृदय बसहु सुर भूप॥</div><div class="highlight">💡 Hanuman Chalisa subah sham padhein. Har darr, kasht, bimari mein Bajrangbali ki kripa milti hai. Jai Hanuman! 🙏</div>`}
+  ]},
+  upanishad:{name:'उपनिषद',icon:'📿',chapters:[
+    {num:1,name:'कठोपनिषद',desc:'Nachiketa aur Yam',content:`<h3>कठोपनिषद — नचिकेता की कथा</h3><div class="highlight">📿 Ek bahadur balak Nachiketa ne Yamaraj se mrityu aur Atma ka rahasya poocha.</div><p>Nachiketa teen din Yamlok mein baith gaye. Yam ne tin varadaan diye. Teesra varadaan — Atma ka rahasya.</p><div class="verse">न जायते म्रियते वा विपश्चि-\nन्नायं कुतश्चिन्न बभूव कश्चित्।\nअजो नित्यः शाश्वतोऽयं पुराणो\nन हन्यते हन्यमाने शरीरे॥</div><p>"Atma na janam leti, na marti. Sharir ke maarne par bhi Atma nahi marti."</p><div class="highlight">💡 Mrityu sirf sharir ki hoti hai. Sachcha gyan woh hai jo Atma ko jaane.</div>`},
+    {num:2,name:'ईशावास्योपनिषद',desc:'Sabme Ishwar hai',content:`<h3>ईशावास्योपनिषद</h3><div class="verse">ईशावास्यमिदं सर्वं यत्किञ्च जगत्यां जगत्।\nतेन त्यक्तेन भुञ्जीथा मा गृधः कस्यस्विद्धनम्॥</div><p>"Is jagat mein jo kuch bhi hai — sab Ishwar se vyapt hai. Tyag ki bhavna se upbhog karo. Lalach mat karo."</p><div class="highlight">💡 Duniya mein rehkar, sab cheez mein Ishwar dekho.</div>`},
+    {num:3,name:'मांडूक्योपनिषद',desc:'OM ka rahasya',content:`<h3>मांडूक्योपनिषद — ॐ का रहस्य</h3><div class="verse">ॐ इत्येतदक्षरमिदं सर्वं — Jo bhi tha, hai, hoga — sab OM hi hai।</div><p><strong>OM ke teen akshar:</strong> A = jagrit, U = swapna, M = sushupti. Matra-rahit OM = pure consciousness.</p><div class="highlight">💡 Aankhein band karo, gehri saans lo, "OM" bolte raho — andar shanti aa jaayegi.</div>`}
+  ]}
+};
+
+let currentBook=null,currentChapter=null,fontSize=14;
+
+function backToBooksPage(){
+  document.getElementById('lib-books-page').style.display='block';
+  document.getElementById('lib-chapters-page').style.display='none';
+  document.getElementById('lib-reader-page').style.display='none';
+}
+function openBook(bookId){
+  currentBook=bookId;
+  const book=BOOKS[bookId];
+  document.getElementById('chapter-list-title-page').textContent=book.icon+' '+book.name;
+  document.getElementById('chapter-list-body-page').innerHTML=book.chapters.map((c,i)=>
+    `<div class="chapter-item" onclick="openChapterPage(${i})"><div class="chapter-num">${c.num}</div><div><div class="chapter-name">${c.name}</div><div class="chapter-desc">${c.desc}</div></div></div>`
+  ).join('');
+  document.getElementById('lib-books-page').style.display='none';
+  document.getElementById('lib-chapters-page').style.display='block';
+  document.getElementById('lib-reader-page').style.display='none';
+  window.scrollTo(0,0);
+}
+function backToChaptersPage(){
+  document.getElementById('lib-chapters-page').style.display='block';
+  document.getElementById('lib-reader-page').style.display='none';
+}
+function openChapterPage(idx){
+  const book=BOOKS[currentBook],chapter=book.chapters[idx];
+  currentChapter=idx;
+  document.getElementById('reader-title-page').textContent=book.icon+' '+chapter.name;
+  document.getElementById('reader-subtitle-page').textContent=book.name+' · '+chapter.desc;
+  document.getElementById('reader-content-page').innerHTML=chapter.content;
+  document.getElementById('reader-content-page').style.fontSize=fontSize+'px';
+  document.getElementById('reader-progress-page').style.width=((idx+1)/book.chapters.length*100).toFixed(0)+'%';
+  document.getElementById('lib-chapters-page').style.display='none';
+  document.getElementById('lib-reader-page').style.display='block';
+  window.scrollTo(0,0);
+}
+function changeFontSizePage(d){fontSize=Math.max(12,Math.min(20,fontSize+d));document.getElementById('reader-content-page').style.fontSize=fontSize+'px';}
+function shareChapterPage(){
+  const t=document.getElementById('reader-title-page').textContent;
+  const msg='🕉️ Krishna Giyan\n\n'+t+'\n\nkrishnagiyan.in';
+  if(navigator.share){navigator.share({text:msg});}else{window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
+}
+function askKrishnaAboutPage(){
+  const t=document.getElementById('reader-title-page').textContent;
+  switchPage('home');
+  setTimeout(()=>{document.getElementById('userInput').value=t+' ke baare mein aur batao';document.getElementById('userInput').focus();},200);
+}
+
+// ===== INIT =====
+applyTheme();
+loadSettings();
+updatePlanBadge();
+showDailyShloka();
+</script>
+</body>
+</html>
