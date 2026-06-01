@@ -945,7 +945,7 @@ async function callKrishnaAPI(msg){
   chatHistory.push({role:'user',content:msg});
   
   // ===== GEMINI API =====
-  const GEMINI_KEY = 'AIzaSyAQ.Ab8RN6JGvUTxXOwICLLfYRwj-_2gdTBSJY9fQPYhk3beXSicaw';
+  const GEMINI_KEY = 'AIzaSyAQ.Ab8RN6J3Y30t2nisOvoziNKWvWVMiLRG_xUomjn-hBhhst3Hkw';
   
   const messages = chatHistory.map(m => ({
     role: m.role === 'assistant' ? 'model' : 'user',
