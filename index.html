@@ -911,12 +911,12 @@ let userPlan=localStorage.getItem('krishna_plan')||'free';
 let freeUsed=parseInt(localStorage.getItem('krishna_free_used')||'0');
 let isLoading=false,chatHistory=[];
 function getPlanStatus(){if(userPlan==='monthly'||userPlan==='yearly')return'premium';if(userPlan==='paid1')return'paid1';return'free';}
-function canSendMessage(){const p=getPlanStatus();if(p==='premium')return true;if(p==='paid1'&&freeUsed<10)return true;if(p==='free'&&freeUsed<1)return true;return false;}
+function canSendMessage(){const p=getPlanStatus();if(p==='premium')return true;if(p==='paid1'&&freeUsed<10)return true;if(p==='free'&&freeUsed<3)return true;return false;}
 function updatePlanBadge(){
   const b=document.getElementById('plan-badge'),p=getPlanStatus();
   if(p==='premium'){b.textContent=userPlan==='yearly'?'👑 Yearly':'✨ Monthly';b.className='plan-badge premium';}
   else if(p==='paid1'){b.textContent='⚡ '+(Math.max(0,10-freeUsed))+' left';b.className='plan-badge paid1';}
-  else{b.textContent='🆓 '+(Math.max(0,1-freeUsed))+' Free';b.className='plan-badge free';}
+  else{b.textContent='🆓 '+(Math.max(0,3-freeUsed))+' Free';b.className='plan-badge free';}
 }
 
 // ===== RAZORPAY =====
